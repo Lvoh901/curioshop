@@ -6,9 +6,12 @@ import Back1 from '../images/back01.jpg';
 import Back2 from '../images/back02.jpg';
 import Back3 from '../images/back03.jpg';
 
-// about component
+// components
 import About from './About';
 import Gallery from './Gallery';
+import Testimonials from './Testimonials';
+import Contact from './Contact';
+import Footer from './Footer';
 
 // gallery images
 import Antiq1 from '../images/antique1.jpg';
@@ -70,6 +73,21 @@ const Hero = () => {
             {/* gallery */}
             <section className=''>
                 <Gallery bestSellers={bestSellers} />
+            </section>
+
+            {/* testimonials */}
+            <section>
+                <Testimonials />
+            </section>
+
+            {/* contact */}
+            <section>
+                <Contact />
+            </section>
+
+            {/* footer */}
+            <section>
+                <Footer/>
             </section>
         </div>
     )
