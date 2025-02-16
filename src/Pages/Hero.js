@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from "framer-motion";
 import VerticalCarousel from '../Assets/Carousel';
 
 // carousel images
@@ -11,10 +10,10 @@ import Back3 from '../images/back03.jpg';
 import About from './About';
 import Gallery from './Gallery';
 
-// bento gallery
-import Bento1 from '../images/shuka1.jpg';
-import Bento2 from '../images/shuka2.jpg';
-import { RiArrowRightLine } from 'react-icons/ri';
+// gallery images
+import Antiq1 from '../images/antique1.jpg';
+import Shuka1 from '../images/shuka1.jpg';
+import Shuka2 from '../images/shuka2.jpg';
 
 const Hero = () => {
     const slides = [
@@ -35,6 +34,27 @@ const Hero = () => {
         }
     ];
 
+    const bestSellers = [
+        {
+            title: "Celestial Crystal Vase",
+            description: "Hand-blown glass sculpture with nebula-like color patterns, 3D-printed titanium base",
+            price: "2500",
+            image: Antiq1
+        },
+        {
+            title: "Vintage Pocket Watch",
+            description: "Antique brass pocket watch with intricate engravings",
+            price: "1800",
+            image: Shuka1
+        },
+        {
+            title: "Art Deco Lamp",
+            description: "Elegant art deco-style table lamp with brass finish",
+            price: "3200",
+            image: Shuka2
+        }
+    ];
+
     return (
         <div className=''>
             {/* landing */}
@@ -49,7 +69,7 @@ const Hero = () => {
 
             {/* gallery */}
             <section className=''>
-                <Gallery />
+                <Gallery bestSellers={bestSellers} />
             </section>
         </div>
     )
