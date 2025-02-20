@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Card from '../Assets/Card';
-import { RiTruckLine, RiSecurePaymentLine, RiCustomerService2Line, RiExchangeLine } from 'react-icons/ri';
+import { RiTruckLine, RiSecurePaymentLine, RiCustomerService2Line } from 'react-icons/ri';
 import Tab from '../Assets/TabContent';
 
 const Gallery = ({ bestSellers }) => {
@@ -20,11 +20,6 @@ const Gallery = ({ bestSellers }) => {
             icon: <RiCustomerService2Line className='w-8 h-8 lg:w-12 lg:h-12' />,
             title: "24/7 Support",
             text: "Dedicated customer care team"
-        },
-        {
-            icon: <RiExchangeLine className='w-8 h-8 lg:w-12 lg:h-12' />,
-            title: "Easy Returns",
-            text: "30-day hassle-free return policy"
         }
     ];
 
@@ -78,31 +73,42 @@ const Gallery = ({ bestSellers }) => {
                 ))}
             </motion.div>
 
-            <motion.div
-                className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-8 lg:py-16 gap-4 lg:gap-6 mx-auto max-w-4xl px-4 lg:px-8'
-                variants={containerVariants}
-            >
-                {features.map((feature, index) => (
-                    <motion.div
-                        key={index}
-                        className='flex flex-col items-center text-center bg-white shadow-lg hover:shadow-xl p-6 rounded-2xl transition-all cursor-pointer'
-                        variants={itemVariants}
-                        whileHover={{ y: -5 }}
-                    >
+            <div className='mx-auto max-w-3xl px-4 lg:px-8 py-8 lg:py-16'>
+                <motion.h1
+                    className='text-2xl lg:text-3xl font-bold text-gray-800 uppercase mb-8 text-center underline underline-offset-4'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    our values
+                </motion.h1>
+
+                <motion.div
+                    className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6'
+                    variants={containerVariants}
+                >
+                    {features.map((feature, index) => (
                         <motion.div
-                            className='text-gray-600 mb-4 hover:text-blue-600'
-                            whileHover={{ scale: 1.1 }}
+                            key={index}
+                            className='flex flex-col items-center text-center bg-white shadow-lg hover:shadow-xl p-6 rounded-2xl transition-all cursor-pointer'
+                            variants={itemVariants}
+                            whileHover={{ y: -5 }}
                         >
-                            {feature.icon}
+                            <motion.div
+                                className='text-gray-600 mb-4 hover:text-blue-600'
+                                whileHover={{ scale: 1.1 }}
+                            >
+                                {feature.icon}
+                            </motion.div>
+                            <h2 className='font-bold text-lg lg:text-xl mb-2 hover:text-blue-600'>{feature.title}</h2>
+                            <p className='text-gray-600 text-sm lg:text-md max-w-xs'>{feature.text}</p>
                         </motion.div>
-                        <h2 className='font-bold text-lg lg:text-xl mb-2 hover:text-blue-600'>{feature.title}</h2>
-                        <p className='text-gray-600 text-sm lg:text-md max-w-xs'>{feature.text}</p>
-                    </motion.div>
-                ))}
-            </motion.div>
+                    ))}
+                </motion.div>
+            </div>
 
             <motion.div>
-                <Tab/>
+                <Tab />
             </motion.div>
         </motion.div>
     );
