@@ -42,8 +42,8 @@ const Navigation = () => {
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center py-2">
                         {/* Logo */}
-                        <a href="/" className="text-2xl font-bold text-gray-900 hover:text-gray-700 transition-colors uppercase">
-                            elegance
+                        <a href="/" className="text-2xl font-bold text-gray-900 hover:text-gray-700 transition-colors">
+                            LeGance
                         </a>
 
                         {/* Desktop Navigation */}

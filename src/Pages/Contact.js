@@ -117,7 +117,7 @@ const Contact = () => {
                     >
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label className="block text-gray-700 mb-2" htmlFor="name">
+                                <label className="block text-gray-700 mb-2 font-bold uppercase" htmlFor="name">
                                     Name
                                 </label>
                                 <input
@@ -130,7 +130,7 @@ const Contact = () => {
                             </div>
 
                             <div>
-                                <label className="block text-gray-700 mb-2" htmlFor="email">
+                                <label className="block text-gray-700 mb-2 font-bold uppercase" htmlFor="email">
                                     Email
                                 </label>
                                 <input
@@ -144,9 +144,10 @@ const Contact = () => {
                         </div>
 
                         <div>
-                            <label className="block text-gray-700 mb-2" htmlFor="message">
+                            <label className="block text-gray-700 mb-2 font-bold uppercase" htmlFor="message">
                                 Message
                             </label>
+
                             <textarea
                                 id="message"
                                 rows="4"

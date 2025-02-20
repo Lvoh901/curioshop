@@ -8,7 +8,7 @@ const testimonials = [
         id: 1,
         name: 'Sarah Johnson',
         role: 'Interior Designer',
-        text: 'The unique pieces from Curio transformed my client\'s living space into a conversation starter. Quality and craftsmanship beyond expectations!',
+        text: 'The unique pieces from LeGance transformed my client\'s living space into a conversation starter. Quality and craftsmanship beyond expectations!',
         avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
         rating: 4.5
     },
