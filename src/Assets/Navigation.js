@@ -17,6 +17,7 @@ const Navigation = () => {
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'Gallery', path: '/gallery' },
+        { name: 'Contact', path: '/contact' },
     ];
 
     return (
@@ -31,7 +32,7 @@ const Navigation = () => {
                         </Link>
 
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center space-x-8">
+                        <div className="hidden md:flex items-center space-x-2">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.name}

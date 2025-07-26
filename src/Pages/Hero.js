@@ -169,7 +169,7 @@ const Hero = ({ bestSellers }) => {
                     <p className="font-light mb-4">
                         At Legance, we believe that every space deserves a touch of beauty and wonder. Our curated collection of curios blends timeless elegance with modern artistry, offering you unique pieces that inspire and delight. Whether you're searching for the perfect gift or a statement piece for your home, Legance is your destination for quality, creativity, and exceptional value. Discover the art of refined living—discover Legance.
                     </p>
-                    
+
                     <button className="py-2 px-4 bg-[#ffb400] text-black rounded-md hover:text-white">Learn More</button>
                 </div>
             </section>
@@ -178,15 +178,17 @@ const Hero = ({ bestSellers }) => {
             <section className="bg-gray-100">
                 <div className="container mx-auto p-8 lg:p-12">
                     <span className="underline underline-offset-4 font-bold decoration-4 decoration-[#ffb400] uppercase">best sellers</span>
-                    <h2>Curated Selection</h2>
+
+                    <h2 className='pb-4'>Curated Selection</h2>
+
                     <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 lg:px-8"
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4 lg:px-8"
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
                     >
                         {bestSellers && bestSellers.length > 0 ? (
-                            bestSellers.map((product, index) => (
+                            bestSellers.slice(0, 4).map((product, index) => (
                                 <motion.div
                                     key={index}
                                     variants={itemVariants}

@@ -32,7 +32,7 @@ const Card = ({ title, description, price, image, rating }) => {
             {/* Image Container */}
             <div className="relative h-72 rounded-t-xl overflow-hidden mb-4">
                 <img
-                    src={`/images/${image}`}
+                    src={image}
                     alt={title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                 />
@@ -40,10 +40,11 @@ const Card = ({ title, description, price, image, rating }) => {
 
             {/* Content */}
             <div className="space-y-3 px-5 pb-5">
-                <h3 className="text-lg font-bold text-gray-100">{title}</h3>
-                <p className="text-gray-400 line-clamp-2 text-sm">{description}</p>
+                <h3 className="text-lg font-bold">{title}</h3>
+                <small className="text-gray-500 line-clamp-2 font-light">{description}</small>
+
                 <div className="flex items-center justify-between mt-2">
-                    <span className="text-lg font-semibold text-white">Ksh. {price}</span>
+                    <span className="text-lg font-semibold">Ksh. {price}</span>
                     {renderStars(rating)}
                 </div>
             </div>
