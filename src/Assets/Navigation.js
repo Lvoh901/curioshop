@@ -37,7 +37,7 @@ const Navigation = () => {
                                 <Link
                                     key={link.name}
                                     to={link.path}
-                                    className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors uppercase flex gap-2"
+                                    className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors suppercase flex gap-2 content uppercase"
                                 >
                                     {link.name}
                                 </Link>
