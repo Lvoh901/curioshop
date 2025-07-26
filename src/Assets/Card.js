@@ -1,7 +1,25 @@
 import { motion } from 'framer-motion';
-import { RiBookmark2Line } from 'react-icons/ri';
+import { RiStarFill, RiStarHalfFill, RiStarLine } from 'react-icons/ri';
 
-const Card = ({ title, description, price, image }) => {
+const Card = ({ title, description, price, image, rating }) => {
+    const renderStars = (rating) => {
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 >= 0.5;
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+        return (
+            <div className="flex space-x-1">
+                {[...Array(fullStars)].map((_, i) => (
+                    <RiStarFill key={`full-${i}`} className="w-4 h-4 text-yellow-500" />
+                ))}
+                {hasHalfStar && <RiStarHalfFill className="w-4 h-4 text-yellow-500" />}
+                {[...Array(emptyStars)].map((_, i) => (
+                    <RiStarLine key={`empty-${i}`} className="w-4 h-4 text-yellow-500" />
+                ))}
+            </div>
+        );
+    };
+
     return (
         <motion.div
             className="relative group bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-2 shadow-2xl overflow-hidden cursor-pointer"
@@ -14,7 +32,7 @@ const Card = ({ title, description, price, image }) => {
             {/* Image Container */}
             <div className="relative h-72 rounded-t-xl overflow-hidden mb-4">
                 <img
-                    src={image}
+                    src={`/images/${image}`}
                     alt={title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                 />
@@ -22,9 +40,12 @@ const Card = ({ title, description, price, image }) => {
 
             {/* Content */}
             <div className="space-y-3 px-5 pb-5">
-                <h3 className="text-xl font-bold text-gray-100">{title}</h3>
-                <p className="text-gray-400 line-clamp-2 text-md">{description}</p>
-                <span className="text-xl font-semibold text-white flex gap-2 items-center"><RiBookmark2Line className='w-4 h-4'/> | Ksh. {price}</span>
+                <h3 className="text-lg font-bold text-gray-100">{title}</h3>
+                <p className="text-gray-400 line-clamp-2 text-sm">{description}</p>
+                <div className="flex items-center justify-between mt-2">
+                    <span className="text-lg font-semibold text-white">Ksh. {price}</span>
+                    {renderStars(rating)}
+                </div>
             </div>
         </motion.div>
     );
