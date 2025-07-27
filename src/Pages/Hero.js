@@ -275,7 +275,7 @@ const Hero = ({ bestSellers }) => {
             </section>
 
             {/* Call to Action Section */}
-            <section className="relative h-[50vh] bg-cover bg-center flex items-center justify-center text-white" style={{ backgroundImage: `url(${CallToActionImage})` }}>
+            <section className="relative h-[65vh] bg-cover bg-center flex items-center justify-center text-white" style={{ backgroundImage: `url(${CallToActionImage})` }}>
                 <div className="absolute inset-0 bg-black bg-opacity-60"></div>
                 <div className="relative z-10 text-center px-4">
                     <motion.h2
