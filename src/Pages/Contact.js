@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RiMailSendLine, RiPhoneLine, RiMapPin2Line, RiCheckLine, RiErrorWarningLine } from 'react-icons/ri';
 
@@ -28,6 +28,11 @@ const Contact = () => {
     const [submitting, setSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [submitError, setSubmitError] = useState('');
+
+    // Ensure page loads from the top
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -109,22 +114,22 @@ const Contact = () => {
                 {/* Contact Info */}
                 <div className="flex flex-col justify-center space-y-6 border-b md:border-b-0 md:border-r border-gray-200 pr-0 md:pr-6 pb-6 md:pb-0">
                     <h2 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                        <RiMailSendLine className="text-[#ffb400] text-2xl" />
+                        <RiMailSendLine className="text-[#ff6a00] text-2xl" />
                         Contact Us
                     </h2>
                     <p className="text-gray-600 mb-2">
                         We'd love to hear from you! Fill out the form or reach us directly:
                     </p>
                     <div className="flex items-center gap-2 text-gray-700">
-                        <RiPhoneLine className="text-[#ffb400]" />
+                        <RiPhoneLine className="text-[#ff6a00]" />
                         <span className="font-medium">+254 700 123 456</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-700">
-                        <RiMailSendLine className="text-[#ffb400]" />
+                        <RiMailSendLine className="text-[#ff6a00]" />
                         <span className="font-medium">info@legance.com</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-700">
-                        <RiMapPin2Line className="text-[#ffb400]" />
+                        <RiMapPin2Line className="text-[#ff6a00]" />
                         <span className="font-medium">Nairobi, Kenya</span>
                     </div>
                 </div>
@@ -143,7 +148,7 @@ const Contact = () => {
                                 <h3 className="text-xl font-semibold text-gray-800 mb-1">Thank you!</h3>
                                 <p className="text-gray-600 text-center">Your message has been sent. We'll get back to you soon.</p>
                                 <button
-                                    className="mt-6 px-4 py-2 bg-[#ffb400] text-white rounded-md font-medium hover:bg-[#e0a000] transition"
+                                    className="mt-6 px-4 py-2 bg-[#ffb400] text-white rounded-md font-medium hover:bg-[#ff6a00] transition"
                                     onClick={() => setSubmitted(false)}
                                 >
                                     Send Another

@@ -40,13 +40,10 @@ const Card = ({ title, description, price, image, rating }) => {
 
             {/* Content */}
             <div className="space-y-3 px-5 pb-5">
-                <h3 className="text-lg font-bold">{title}</h3>
-                <small className="text-gray-500 line-clamp-2 font-light">{description}</small>
-
-                <div className="flex items-center justify-between mt-2">
-                    <span className="text-lg font-semibold">Ksh. {price}</span>
-                    {renderStars(rating)}
-                </div>
+                <h3 className="text-lg font-bold mb-2">{title}</h3>
+                <span>{renderStars(rating)}</span>
+                <p className="text-gray-500 line-clamp-2 font-light">{description}</p>
+                <h3 className="font-semibold mt-2 underline underline-offset-4">Ksh. {price}</h3>
             </div>
         </motion.div>
     );

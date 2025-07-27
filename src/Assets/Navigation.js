@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { RiSearch2Line, RiShoppingCart2Line, RiMenu3Line, RiCloseLine, RiPhoneLine } from 'react-icons/ri';
+import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 
 const Navigation = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -27,7 +27,7 @@ const Navigation = () => {
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center py-2">
                         {/* Logo */}
-                        <Link to="/" className="text-2xl font-bold text-gray-900 hover:text-gray-700 transition-colors">
+                        <Link to="/" className="text-2xl font-bold text-gray-900 hover:text-gray-600 transition-colors">
                             LeGance
                         </Link>
 
@@ -37,7 +37,7 @@ const Navigation = () => {
                                 <Link
                                     key={link.name}
                                     to={link.path}
-                                    className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors suppercase flex gap-2 content uppercase"
+                                    className="text-black hover:text-[#ff6a00] px-3 py-2 rounded-md text-sm font-medium transition-colors suppercase flex gap-2 content uppercase"
                                 >
                                     {link.name}
                                 </Link>

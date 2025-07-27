@@ -5,7 +5,7 @@ const Button = ({linkRef, Text}) => {
     return (
         <div>
             <button className="relative group overflow-hidden border bg-white px-4 py-2 mt-5 rounded-lg transition-all duration-300 hover:shadow-lg hover:border-[#ffb400]">
-                <Link to={linkRef} className="relative z-10 text-gray-800 hover:text-white font-semibold text-sm sm:text-base px-4 py-2 transition-all duration-300">
+                <Link to={linkRef} className="relative z-10 text-gray-800 hover:text-[#ff6a00] font-semibold text-sm sm:text-base px-4 py-2 transition-all duration-300">
                     {Text}
                 </Link>
                 {/* Background Gradient Effect */}

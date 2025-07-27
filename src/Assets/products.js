@@ -13,63 +13,63 @@ const products = [
     {
         title: "Vintage Compass",
         description: "A beautifully preserved brass compass, perfect for collectors or as a unique decorative piece.",
-        price: 45.00,
+        price: 4500,
         image: product1,
         rating: 4.5
     },
     {
         title: "Antique Globe",
         description: "A stunning replica of an antique globe, featuring intricate detailing and a classic wooden base.",
-        price: 120.00,
+        price: 1200,
         image: product2,
         rating: 5.0
     },
     {
         title: "Ornate Jewelry Box",
         description: "Hand-carved wooden jewelry box with velvet lining, ideal for storing precious keepsakes.",
-        price: 75.00,
+        price: 7500,
         image: product3,
         rating: 4.0
     },
     {
         title: "Retro Camera",
         description: "A vintage film camera in excellent condition, a must-have for photography enthusiasts.",
-        price: 90.00,
+        price: 9000,
         image: product4,
         rating: 4.5
     },
     {
         title: "Porcelain Doll",
         description: "Exquisitely crafted porcelain doll with delicate features and period attire.",
-        price: 60.00,
+        price: 6000,
         image: product5,
         rating: 3.5
     },
     {
         title: "Steampunk Goggles",
         description: "Unique handcrafted goggles with brass accents, perfect for cosplay or a distinctive look.",
-        price: 35.00,
+        price: 3500,
         image: product6,
         rating: 4.0
     },
     {
         title: "Ancient Scroll Replica",
         description: "A meticulously detailed replica of an ancient scroll, adding a touch of history to any room.",
-        price: 50.00,
+        price: 5000,
         image: product7,
         rating: 4.0
     },
     {
         title: "Victorian Pocket Watch",
         description: "A classic working pocket watch with an engraved casing, a timeless accessory.",
-        price: 110.00,
+        price: 11000,
         image: product8,
         rating: 4.8
     },
     {
         title: "Crystal Decanter Set",
         description: "Elegant crystal decanter with matching glasses, perfect for spirits or as a display piece.",
-        price: 150.00,
+        price: 15000,
         image: product9,
         rating: 4.7
     }

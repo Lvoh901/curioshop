@@ -32,7 +32,7 @@ const Gallery = ({ bestSellers }) => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-lg text-[#ffb400] uppercase font-semibold mb-2 text-center"
+                className="text-lg text-[#ff6a00] uppercase font-semibold mb-2 text-center"
             >
                 Best Selling
             </motion.p>

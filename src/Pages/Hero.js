@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { RiStarFill, RiStarHalfFill, RiStarLine, RiTruckLine, RiSecurePaymentLine, RiCustomerService2Line } from 'react-icons/ri';
+import { RiStarFill, RiStarHalfFill, RiStarLine, RiSecurePaymentLine, RiCustomerService2Line } from 'react-icons/ri';
 import Button from '../Assets/Button';
 import Card from '../Assets/Card';
 
@@ -8,11 +8,12 @@ import Card from '../Assets/Card';
 import HeroImage from '../images/back01.jpg';
 import CallToActionImage from '../images/back02.jpg';
 import About1 from '../images/product6.webp';
+import { MdOutlineShoppingCartCheckout } from 'react-icons/md';
 
 const Hero = ({ bestSellers }) => {
     const features = [
         {
-            icon: <RiTruckLine className='w-8 h-8 lg:w-12 lg:h-12' />,
+            icon: <MdOutlineShoppingCartCheckout className='w-8 h-8 lg:w-12 lg:h-12' />,
             title: "Order Online",
             text: "Shop from the comfort of your home with our seamless online ordering system. Browse, select, and purchase your favorite curios in just a few clicks."
         },
@@ -63,11 +64,11 @@ const Hero = ({ bestSellers }) => {
         return (
             <div className="flex space-x-1">
                 {[...Array(fullStars)].map((_, i) => (
-                    <RiStarFill key={`full-${i}`} className="w-4 h-4 text-yellow-500" />
+                    <RiStarFill key={`full-${i}`} className="w-4 h-4 text-[#ffb400]" />
                 ))}
-                {hasHalfStar && <RiStarHalfFill key="half" className="w-4 h-4 text-yellow-500" />}
+                {hasHalfStar && <RiStarHalfFill key="half" className="w-4 h-4 text-[#ffb400]" />}
                 {[...Array(emptyStars)].map((_, i) => (
-                    <RiStarLine key={`empty-${i}`} className="w-4 h-4 text-yellow-500" />
+                    <RiStarLine key={`empty-${i}`} className="w-4 h-4 text-[#ffb400]" />
                 ))}
             </div>
         );
@@ -105,17 +106,18 @@ const Hero = ({ bestSellers }) => {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="text-lg text-[#ffb400] uppercase font-semibold mb-2"
+                        className="text-lg text-[#ffb400] uppercase font-light mb-2"
                     >
                         Special Offer
                     </motion.p>
+
                     <motion.h1
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
                         className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4"
                     >
-                        Your Curio Journey <br /> Begins Here: Get 20% Off <br /> Your First Order!
+                        Your Curio Journey <br /> Begins Here: Get 10% Off <br /> Your First Order!
                     </motion.h1>
                     <Button linkRef='/gallery' Text='Shop Now' />
                 </div>
@@ -123,7 +125,7 @@ const Hero = ({ bestSellers }) => {
 
             {/* Core Values Section */}
             <section className='bg-gray-200'>
-                <div className='mx-auto container p-12'>
+                <div className='mx-auto max-w-5xl p-12'>
                     <motion.h1
                         className='text-2xl lg:text-3xl font-bold text-gray-800 uppercase mb-8 text-center underline underline-offset-4'
                         initial={{ opacity: 0 }}
@@ -145,12 +147,12 @@ const Hero = ({ bestSellers }) => {
                                 whileHover={{ y: -5 }}
                             >
                                 <motion.div
-                                    className='text-gray-600 mb-4 hover:text-blue-600'
+                                    className='mb-4 text-[#ff6a00]'
                                     whileHover={{ scale: 1.1 }}
                                 >
                                     {feature.icon}
                                 </motion.div>
-                                <h2 className='font-bold mb-2 hover:text-blue-600'>{feature.title}</h2>
+                                <h2 className='font-bold mb-2 hover:text-[#ff6a00]'>{feature.title}</h2>
                                 <p className='text-gray-600'>{feature.text}</p>
                             </motion.div>
                         ))}
@@ -162,7 +164,7 @@ const Hero = ({ bestSellers }) => {
             <section className="mx-auto max-w-5xl p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
                 <img src={About1} className="rounded-md" alt="About" />
                 <div>
-                    <span className="underline underline-offset-4 font-bold decoration-4 decoration-[#ffb400] uppercase">About</span>
+                    <span className="underline underline-offset-4 font-bold decoration-4 decoration-[#ff6a00] uppercase">About</span>
 
                     <h1 className='py-2'>Welcome to Legance</h1>
 
@@ -170,14 +172,14 @@ const Hero = ({ bestSellers }) => {
                         At Legance, we believe that every space deserves a touch of beauty and wonder. Our curated collection of curios blends timeless elegance with modern artistry, offering you unique pieces that inspire and delight. Whether you're searching for the perfect gift or a statement piece for your home, Legance is your destination for quality, creativity, and exceptional value. Discover the art of refined living—discover Legance.
                     </p>
 
-                    <button className="py-2 px-4 bg-[#ffb400] text-black rounded-md hover:text-white">Learn More</button>
+                    <button className="py-2 px-4 bg-[#ff6a00] text-black rounded-md hover:text-white">Learn More</button>
                 </div>
             </section>
 
             {/* Best Sellers Section */}
             <section className="bg-gray-100">
                 <div className="container mx-auto p-8 lg:p-12">
-                    <span className="underline underline-offset-4 font-bold decoration-4 decoration-[#ffb400] uppercase">best sellers</span>
+                    <span className="underline underline-offset-4 font-bold decoration-4 decoration-[#ff6a00] uppercase">best sellers</span>
 
                     <h2 className='pb-4'>Curated Selection</h2>
 
@@ -243,7 +245,7 @@ const Hero = ({ bestSellers }) => {
                             <motion.article
                                 key={testimonial.id}
                                 variants={itemVariants}
-                                className="relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-8 cursor-pointer"
+                                className="relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-8 cursor-pointer border hover:border-[#ff6a00]"
                                 whileHover={{ y: -10 }}
                             >
                                 <div className="flex flex-col items-center mb-6">
