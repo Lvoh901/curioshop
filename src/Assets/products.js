@@ -6,7 +6,8 @@ const products = [
     "price": 4500,
     "category": "Animal figurines",
     "image": require("../images/product1.jpg"),
-    "rating": 5
+    "rating": 5,
+    "shop": "Retail Shop, Tabaka, Kisii"
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@ const products = [
     "price": 3250,
     "category": "Decorative Bowls / Plates",
     "image": require("../images/product2.jpg"),
-    "rating": 4.5
+    "rating": 4.5,
+    "shop": "Ngong Turbine Hotel, Ngong Town"
   },
   {
     "id": 3,
@@ -24,7 +26,8 @@ const products = [
     "price": 1800,
     "category": "Candle Holders",
     "image": require("../images/product3.webp"),
-    "rating": 4
+    "rating": 4,
+    "shop": "Custom-made Orders"
   },
   {
     "id": 4,
@@ -32,8 +35,9 @@ const products = [
     "description": "A modern take on the classic pose, hand-chiseled from grey stone.",
     "price": 6500,
     "category": "Sculptures",
-    "image": require("../images/product4.webp"),
-    "rating": 5
+    "image": require("../images/product4.jpg"),
+    "rating": 5,
+    "shop": "Retail Shop, Tabaka, Kisii"
   },
   {
     "id": 5,
@@ -41,8 +45,9 @@ const products = [
     "description": "Two intertwined forms representing harmony and community.",
     "price": 5500,
     "category": "Abstract Art Pieces",
-    "image": require("../images/product5.webp"),
-    "rating": 4.5
+    "image": require("../images/product5.jpg"),
+    "rating": 4.5,
+    "shop": "Ngong Turbine Hotel, Ngong Town"
   },
   {
     "id": 6,
@@ -51,7 +56,8 @@ const products = [
     "price": 2500,
     "category": "Soapstone Jewelry",
     "image": require("../images/product7.jpg"),
-    "rating": 4.5
+    "rating": 4.5,
+    "shop": "Custom-made Orders"
   },
   {
     "id": 7,
@@ -60,7 +66,8 @@ const products = [
     "price": 4000,
     "category": "Customized Carvings",
     "image": require("../images/product8.jpg"),
-    "rating": 5
+    "rating": 5,
+    "shop": "Ngong Turbine Hotel, Ngong Town"
   },
   {
     "id": 8,
@@ -68,8 +75,9 @@ const products = [
     "description": "Wall-mounted holder featuring carved acacia trees and wildlife silhouettes.",
     "price": 1500,
     "category": "Key Holders",
-    "image": require("../images/product9.jpeg"),
-    "rating": 4
+    "image": require("../images/product9.jpg"),
+    "rating": 4,
+    "shop": "Custom-made Orders"
   },
   {
     "id": 9,
@@ -78,7 +86,8 @@ const products = [
     "price": 3800,
     "category": "Household Décor",
     "image": require("../images/antique1.jpg"),
-    "rating": 4.5
+    "rating": 4.5,
+    "shop": "Retail Shop, Tabaka, Kisii"
   },
   {
     "id": 10,
@@ -87,7 +96,8 @@ const products = [
     "price": 4200,
     "category": "Animal figurines",
     "image": require("../images/shuka1.jpg"),
-    "rating": 4.5
+    "rating": 4.5,
+    "shop": "Ngong Turbine Hotel, Ngong Town"
   }
 ];
 

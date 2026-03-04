@@ -2,10 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 // Using existing images as placeholders for category visuals
-import CategoryImg1 from '../../images/animal_figurines.webp';
+import CategoryImg1 from '../../images/animal_figurines.jpg';
 import CategoryImg2 from '../../images/decorative_bowls.jpg';
-import CategoryImg3 from '../../images/candle_holders.webp';
-import CategoryImg4 from '../../images/sculptures.png';
+import CategoryImg3 from '../../images/candle_holders.jpg';
+import CategoryImg4 from '../../images/sculptures.jpg';
 import CategoryImg5 from '../../images/abstract_art_piece.jpg';
 import CategoryImg6 from '../../images/soapstone_jewellery.jpg';
 import CategoryImg7 from '../../images/customized_carvings.jpg';

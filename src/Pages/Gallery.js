@@ -111,6 +111,7 @@ const Gallery = () => {
                                 price={product.price}
                                 image={product.image}
                                 rating={product.rating}
+                                shop={product.shop}
                             />
                         </motion.div>
                     ))}

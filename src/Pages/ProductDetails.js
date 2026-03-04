@@ -102,29 +102,26 @@ const ProductDetails = () => {
                         <div className="pt-8">
                             <div className="flex items-center mb-3">
                                 <svg className="w-6 h-6 text-[#ff6a00] mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 9V7a5 5 0 00-10 0v2a5 5 0 0010 0zm1 6a1 1 0 01-1 1H7a1 1 0 01-1-1v-2a1 1 0 011-1h10a1 1 0 011 1v2z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
-                                <h3 className="text-lg font-semibold text-gray-800">Purchasing Options</h3>
+                                <h3 className="text-lg font-semibold text-gray-800">Available At</h3>
                             </div>
                             <ul className="space-y-3">
-                                <li className="flex items-center bg-gray-100 rounded-lg p-3 hover:bg-gray-200 transition cursor-pointer">
-                                    <span className="inline-flex items-center justify-center mr-3 h-7 w-7 rounded border border-[#ff6a00] bg-opacity-30 text-[#ff6a00]">
+                                <li className="flex items-center bg-orange-50 border border-orange-200 rounded-lg p-3 hover:bg-orange-100 transition cursor-pointer">
+                                    <span className="inline-flex items-center justify-center mr-3 h-7 w-7 rounded-full bg-[#ff6a00] text-white">
                                         <FaRegCheckCircle className='w-5 h-5' />
                                     </span>
-                                    Retail Shop, Tabaka, Kisii
+                                    <span className="font-bold text-gray-900">{product.shop}</span>
                                 </li>
-                                <li className="flex items-center bg-gray-100 rounded-lg p-3 hover:bg-gray-200 transition cursor-pointer">
-                                    <span className="inline-flex items-center justify-center mr-3 h-7 w-7 rounded border border-[#ff6a00] bg-opacity-30 text-[#ff6a00]">
-                                        <FaRegCheckCircle className='w-5 h-5' />
-                                    </span>
-                                    Ngong Turbine Hotel, Ngong Town
-                                </li>
-                                <li className="flex items-center bg-gray-100 rounded-lg p-3 hover:bg-gray-200 transition cursor-pointer">
-                                    <span className="inline-flex items-center justify-center mr-3 h-7 w-7 rounded border border-[#ff6a00] bg-opacity-30 text-[#ff6a00]">
-                                        <FaRegCheckCircle className='w-5 h-5' />
-                                    </span>
-                                    Custom-made Orders
-                                </li>
+                                {product.shop !== "Custom-made Orders" && (
+                                    <li className="flex items-center bg-gray-100 rounded-lg p-3 hover:bg-gray-200 transition cursor-pointer">
+                                        <span className="inline-flex items-center justify-center mr-3 h-7 w-7 rounded border border-[#ff6a00] bg-opacity-30 text-[#ff6a00]">
+                                            <FaRegCheckCircle className='w-5 h-5' />
+                                        </span>
+                                        Custom-made Orders (Available for all items)
+                                    </li>
+                                )}
                                 <li className="flex items-center bg-gray-100 rounded-lg p-3 hover:bg-gray-200 transition cursor-pointer">
                                     <span className="inline-flex items-center justify-center mr-3 h-7 w-7 rounded border border-[#ff6a00] bg-opacity-30 text-[#ff6a00]">
                                         <FaRegCheckCircle className='w-5 h-5' />

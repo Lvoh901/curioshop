@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
+import { MdShareLocation } from 'react-icons/md';
 import { RiStarFill, RiStarHalfFill, RiStarLine } from 'react-icons/ri';
+import { TfiLocationPin } from 'react-icons/tfi';
 import { Link } from 'react-router-dom';
 
-const Card = ({ id, title, description, price, image, rating }) => {
+const Card = ({ id, title, description, price, image, rating, shop }) => {
     const renderStars = (rating) => {
         const fullStars = Math.floor(rating);
         const hasHalfStar = rating % 1 >= 0.5;
@@ -52,9 +54,13 @@ const Card = ({ id, title, description, price, image, rating }) => {
                         <span className="text-sm text-gray-500">({rating})</span>
                     </div>
                     <p className="text-gray-500 text-sm line-clamp-2 h-10">{description}</p>
-                    <div className="flex items-center justify-between pt-2">
+                    <div className="flex flex-col gap-2 items-center justify-between pt-2">
                         <span className="text-[#ff6a00] font-bold text-xl">Ksh. {price}</span>
-                        <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">Tabaka Soapstone</span>
+
+                        <div className='flex items-center gap-1.5 bg-gray-50 p-1.5 rounded-lg border border-gray-100 group-hover:bg-orange-50 group-hover:border-orange-100 transition-colors'>
+                            <span className="text-xs font-medium uppercase tracking-wider space-x-2"><TfiLocationPin className='text-[#ff6a00] w-4 h-4 flex-shrink-0' /></span>
+                            <span className="text-[10px] font-bold text-gray-600 uppercase tracking-tight line-clamp-1">{shop}</span>
+                        </div>
                     </div>
                 </div>
             </motion.div>
