@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
+import Logo1 from "../images/logo.png";
 
 const Navigation = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -28,7 +29,7 @@ const Navigation = () => {
                     <div className="flex justify-between items-center py-2">
                         {/* Logo */}
                         <Link to="/" className="text-2xl font-bold text-gray-900 hover:text-gray-600 transition-colors">
-                            LeGance
+                            <img src={Logo1} alt="Navbar Logo" style={{ width: "7vw", height: "auto" }} />
                         </Link>
 
                         {/* Desktop Navigation */}

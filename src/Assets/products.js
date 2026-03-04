@@ -1,78 +1,94 @@
-
-import product1 from '../images/product1.jpg';
-import product2 from '../images/product2.jpg';
-import product3 from '../images/product3.webp';
-import product4 from '../images/product4.webp';
-import product5 from '../images/product5.webp';
-import product6 from '../images/product6.webp';
-import product7 from '../images/product7.jpg';
-import product8 from '../images/product8.jpg';
-import product9 from '../images/product9.jpeg';
-
 const products = [
-    {
-        title: "Vintage Compass",
-        description: "A beautifully preserved brass compass, perfect for collectors or as a unique decorative piece.",
-        price: 4500,
-        image: product1,
-        rating: 4.5
-    },
-    {
-        title: "Antique Globe",
-        description: "A stunning replica of an antique globe, featuring intricate detailing and a classic wooden base.",
-        price: 1200,
-        image: product2,
-        rating: 5.0
-    },
-    {
-        title: "Ornate Jewelry Box",
-        description: "Hand-carved wooden jewelry box with velvet lining, ideal for storing precious keepsakes.",
-        price: 7500,
-        image: product3,
-        rating: 4.0
-    },
-    {
-        title: "Retro Camera",
-        description: "A vintage film camera in excellent condition, a must-have for photography enthusiasts.",
-        price: 9000,
-        image: product4,
-        rating: 4.5
-    },
-    {
-        title: "Porcelain Doll",
-        description: "Exquisitely crafted porcelain doll with delicate features and period attire.",
-        price: 6000,
-        image: product5,
-        rating: 3.5
-    },
-    {
-        title: "Steampunk Goggles",
-        description: "Unique handcrafted goggles with brass accents, perfect for cosplay or a distinctive look.",
-        price: 3500,
-        image: product6,
-        rating: 4.0
-    },
-    {
-        title: "Ancient Scroll Replica",
-        description: "A meticulously detailed replica of an ancient scroll, adding a touch of history to any room.",
-        price: 5000,
-        image: product7,
-        rating: 4.0
-    },
-    {
-        title: "Victorian Pocket Watch",
-        description: "A classic working pocket watch with an engraved casing, a timeless accessory.",
-        price: 11000,
-        image: product8,
-        rating: 4.8
-    },
-    {
-        title: "Crystal Decanter Set",
-        description: "Elegant crystal decanter with matching glasses, perfect for spirits or as a display piece.",
-        price: 15000,
-        image: product9,
-        rating: 4.7
-    }
+  {
+    "id": 1,
+    "title": "Soapstone Elephant Family",
+    "description": "Hand-carved family of elephants, symbol of wisdom and strength.",
+    "price": 4500,
+    "category": "Animal figurines",
+    "image": require("../images/product1.jpg"),
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "title": "Traditional Decorative Bowl",
+    "description": "Smoothly finished soapstone bowl with intricate tribal patterns.",
+    "price": 3250,
+    "category": "Decorative Bowls / Plates",
+    "image": require("../images/product2.jpg"),
+    "rating": 4.5
+  },
+  {
+    "id": 3,
+    "title": "Spiral Candle Holder",
+    "description": "Elegant spiral design carved from natural cream soapstone.",
+    "price": 1800,
+    "category": "Candle Holders",
+    "image": require("../images/product3.webp"),
+    "rating": 4
+  },
+  {
+    "id": 4,
+    "title": "The Thinker Sculpture",
+    "description": "A modern take on the classic pose, hand-chiseled from grey stone.",
+    "price": 6500,
+    "category": "Sculptures",
+    "image": require("../images/product4.webp"),
+    "rating": 5
+  },
+  {
+    "id": 5,
+    "title": "Abstract Unity Piece",
+    "description": "Two intertwined forms representing harmony and community.",
+    "price": 5500,
+    "category": "Abstract Art Pieces",
+    "image": require("../images/product5.webp"),
+    "rating": 4.5
+  },
+  {
+    "id": 6,
+    "title": "Beaded Soapstone Pendant",
+    "description": "Unique wearable art combining polished stone and traditional beads.",
+    "price": 2500,
+    "category": "Soapstone Jewelry",
+    "image": require("../images/product7.jpg"),
+    "rating": 4.5
+  },
+  {
+    "id": 7,
+    "title": "Custom Name Plaque",
+    "description": "Personalized carvings tailored to your specific requirements.",
+    "price": 4000,
+    "category": "Customized Carvings",
+    "image": require("../images/product8.jpg"),
+    "rating": 5
+  },
+  {
+    "id": 8,
+    "title": "Safari Key Holder",
+    "description": "Wall-mounted holder featuring carved acacia trees and wildlife silhouettes.",
+    "price": 1500,
+    "category": "Key Holders",
+    "image": require("../images/product9.jpeg"),
+    "rating": 4
+  },
+  {
+    "id": 9,
+    "title": "Geometric Soapstone Vase",
+    "description": "A minimalist household décor piece that fits any modern interior.",
+    "price": 3800,
+    "category": "Household Décor",
+    "image": require("../images/antique1.jpg"),
+    "rating": 4.5
+  },
+  {
+    "id": 10,
+    "title": "Graceful Giraffe Statue",
+    "description": "Tall, elegant giraffe figurine with natural stone grain patterns.",
+    "price": 4200,
+    "category": "Animal figurines",
+    "image": require("../images/shuka1.jpg"),
+    "rating": 4.5
+  }
 ];
 
 export default products;

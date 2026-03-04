@@ -117,20 +117,20 @@ const Contact = () => {
                         <RiMailSendLine className="text-[#ff6a00] text-2xl" />
                         Contact Us
                     </h2>
-                    <p className="text-gray-600 mb-2">
+                    <p className="text-gray-800 mb-2">
                         We'd love to hear from you! Fill out the form or reach us directly:
                     </p>
                     <div className="flex items-center gap-2 text-gray-700">
-                        <RiPhoneLine className="text-[#ff6a00]" />
-                        <span className="font-medium">+254 700 123 456</span>
+                        <RiPhoneLine className="text-[#ff6a00] w-8 h-8" />
+                        <span className="font-medium">0705634476 / 0705091175</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-700">
-                        <RiMailSendLine className="text-[#ff6a00]" />
-                        <span className="font-medium">info@legance.com</span>
+                        <RiMailSendLine className="text-[#ff6a00] w-8 h-8" />
+                        <span className="font-medium">info@jakem.com</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-700">
-                        <RiMapPin2Line className="text-[#ff6a00]" />
-                        <span className="font-medium">Nairobi, Kenya</span>
+                        <RiMapPin2Line className="text-[#ff6a00] w-8 h-8" />
+                        <span className="font-medium">Tabaka, Kisii County, <br /> Ngong Town <br /> Nairobi, Kenya</span>
                     </div>
                 </div>
                 {/* Contact Form */}
@@ -237,9 +237,8 @@ const Contact = () => {
                                 <div>
                                     <button
                                         type="submit"
-                                        className={`w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#ffb400] hover:bg-[#e0a000] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffb400] transition ${
-                                            submitting ? 'opacity-60 cursor-not-allowed' : ''
-                                        }`}
+                                        className={`w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#ffb400] hover:bg-[#e0a000] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffb400] transition ${submitting ? 'opacity-60 cursor-not-allowed' : ''
+                                            }`}
                                         disabled={submitting}
                                     >
                                         {submitting ? (

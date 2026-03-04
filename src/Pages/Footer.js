@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { FaPhoneAlt } from 'react-icons/fa';
+import { MdOutlineEditLocation, MdOutlineMarkEmailUnread } from 'react-icons/md';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -14,7 +16,7 @@ const Footer = () => {
             >
                 {/* Flower Shop Info */}
                 <div>
-                    <h3 className="font-bold mb-4">CurioShop</h3>
+                    <h3 className="font-bold mb-4">JAKEM Business Solutions</h3>
                     <p className="text-white text-sm leading-relaxed">
                         Welcome to the world of Curios, where unique finds come to life with love and creativity. Discover our story, our passion for rare items, and our commitment to making every moment memorable.
                     </p>
@@ -33,21 +35,22 @@ const Footer = () => {
                 {/* Contact Us */}
                 <div>
                     <h3 className="font-bold mb-4 underline underline-offset-4">Contact Us</h3>
-                    <p className="text-white text-sm">
-                        Address: 123 Curio Lane, <br />
-                        Antique City, AC 12345
+                    <p className="text-white text-sm flex gap-3 items-center">
+                        <MdOutlineEditLocation className="w-7 h-7" />
+                        Tabaka, Kisii County, <br />
+                        Ngong Town, Nairobi County
                     </p>
-                    <p className="text-white text-sm mt-2">
-                        Email: contact@curioshop.com
+                    <p className="text-white text-sm mt-2 flex gap-3 items-center">
+                        <MdOutlineMarkEmailUnread className='w-7 h-7' /> contact@curioshop.com
                     </p>
-                    <p className="text-white text-sm mt-2">
-                        Phone: +1 (555) 987-6543
+                    <p className="text-white text-sm mt-2 flex gap-3 items-center">
+                        <FaPhoneAlt className='w-7 h-7' /> 0705634476 / 0705091175
                     </p>
                 </div>
             </motion.div>
 
             <div className="mt-8 pt-8 border-t border-gray-800 text-center text-white text-sm">
-                Copyright © {currentYear} CurioShop. All rights reserved.
+                Copyright © {currentYear} <br /> JAKEM Business Solutions. <br /> All rights reserved.
             </div>
         </footer>
     );
