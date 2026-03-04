@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { MdShareLocation } from 'react-icons/md';
 import { RiStarFill, RiStarHalfFill, RiStarLine } from 'react-icons/ri';
 import { TfiLocationPin } from 'react-icons/tfi';
 import { Link } from 'react-router-dom';
