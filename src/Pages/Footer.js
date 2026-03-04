@@ -50,7 +50,9 @@ const Footer = () => {
             </motion.div>
 
             <div className="mt-8 pt-8 border-t border-gray-800 text-center text-white text-sm">
-                Copyright © {currentYear} <br /> JAKEM Business Solutions. <br /> All rights reserved.
+                <span>Copyright © {currentYear}</span>
+                <h3>JAKEM Business Solutions.</h3>
+                <span>All rights reserved.</span>
             </div>
         </footer>
     );

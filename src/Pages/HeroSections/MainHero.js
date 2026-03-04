@@ -7,12 +7,12 @@ const MainHero = () => {
     return (
         <section className="relative h-[70vh] bg-cover bg-center flex items-center justify-center text-white" style={{ backgroundImage: `url(${HeroImage})` }}>
             <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-            <div className="relative z-10 text-center px-4">
+            <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
                 <motion.p
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="text-lg text-[#ffb400] uppercase font-light mb-2"
+                    className="text-lg text-[#ffb400] uppercase font-medium underline underline-offset-4 decoration-wavy mb-2"
                 >
                     Special Offer
                 </motion.p>
@@ -23,7 +23,7 @@ const MainHero = () => {
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4"
                 >
-                    Your Curio Journey <br /> Begins Here: Get 10% Off <br /> Your First Order!
+                    Discover Unique Curiosities at JAKEM Business Solutions!
                 </motion.h1>
                 <Button linkRef='/gallery' Text='Shop Now' />
             </div>
