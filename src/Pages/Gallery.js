@@ -53,7 +53,7 @@ const Gallery = () => {
                     Our Collection
                 </motion.p>
                 <motion.h1
-                    className='text-3xl lg:text-5xl font-bold text-gray-800 uppercase mb-4'
+                    className='text-3xl lg:text-4xl font-bold text-gray-800 uppercase mb-4'
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}

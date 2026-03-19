@@ -49,44 +49,37 @@ const ProductDetails = () => {
                     <RiArrowLeftLine /> Back to Gallery
                 </Link>
 
-                <div className="bg-white rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+                <div className="grid grid-cols-1 md:grid-cols-2">
                     {/* Image Section */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="p-8 lg:p-12 bg-gray-100 flex items-center justify-center"
-                    >
-                        <img
-                            src={product.image}
-                            alt={product.title}
-                            className="max-w-full h-auto rounded-2xl shadow-lg hover:scale-105 transition-transform duration-500"
-                        />
-                    </motion.div>
+                    <img
+                        src={product.image}
+                        alt={product.title}
+                        className="rounded-2xl w-full"
+                    />
 
                     {/* Content Section */}
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="p-8 lg:p-12 flex flex-col justify-center"
+                        className="px-8 lg:px-12 flex flex-col justify-center"
                     >
-                        <span className="text-sm text-[#ff6a00] font-bold uppercase tracking-widest mb-2">
+                        <span className="text-sm text-[#ff6a00] font-bold uppercase tracking-widest">
                             {product.category}
                         </span>
-                        <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">{product.title}</h1>
+                        <h1 className="text-2xl font-bold text-gray-900">{product.title}</h1>
 
-                        <div className="flex flex-col py-4">
+                        <div className="flex flex-col py-2">
                             {renderStars(product.rating)}
                             <span className="text-sm">({product.rating} / 5 Rating)</span>
                         </div>
 
-                        <p className="text-lg leading-relaxed mb-8">
+                        <p className="text-md leading-relaxed mb-4">
                             {product.description}
                         </p>
 
-                        <div className="text-2xl font-medium text-[#ff6a00] mb-8">
-                            Ksh. <b>{product.price}</b>
+                        <div className="text-2xl font-bold text-[#ff6a00] mb-6">
+                            Ksh. <b className='italic underline underline-offset-2'>{product.price}</b>
                         </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -100,29 +93,24 @@ const ProductDetails = () => {
                         </div>
 
                         <div className="pt-8">
-                            <div className="flex items-center mb-3">
-                                <svg className="w-6 h-6 text-[#ff6a00] mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                <h3 className="text-lg font-semibold text-gray-800">Available At</h3>
-                            </div>
+                            <p className="font-medium text-gray-800 pb-3">Purchase Option:</p>
+
                             <ul className="space-y-3">
-                                <li className="flex items-center bg-orange-50 border border-orange-200 rounded-lg p-3 hover:bg-orange-100 transition cursor-pointer">
+                                <li className="flex items-center bg-orange-50 border border-orange-300 rounded-lg p-2 hover:bg-orange-100 transition cursor-pointer">
                                     <span className="inline-flex items-center justify-center mr-3 h-7 w-7 rounded-full bg-[#ff6a00] text-white">
                                         <FaRegCheckCircle className='w-5 h-5' />
                                     </span>
-                                    <span className="font-bold text-gray-900">{product.shop}</span>
+                                    <small className="font-bold text-gray-900">{product.shop}</small>
                                 </li>
                                 {product.shop !== "Custom-made Orders" && (
-                                    <li className="flex items-center bg-gray-100 rounded-lg p-3 hover:bg-gray-200 transition cursor-pointer">
+                                    <li className="flex items-center bg-gray-100 border border-gray-400 rounded-lg p-2 hover:bg-gray-200 transition cursor-pointer text-sm">
                                         <span className="inline-flex items-center justify-center mr-3 h-7 w-7 rounded border border-[#ff6a00] bg-opacity-30 text-[#ff6a00]">
                                             <FaRegCheckCircle className='w-5 h-5' />
                                         </span>
                                         Custom-made Orders (Available for all items)
                                     </li>
                                 )}
-                                <li className="flex items-center bg-gray-100 rounded-lg p-3 hover:bg-gray-200 transition cursor-pointer">
+                                <li className="flex items-center bg-gray-100 border border-gray-400 rounded-lg p-2 hover:bg-gray-200 transition cursor-pointer text-sm">
                                     <span className="inline-flex items-center justify-center mr-3 h-7 w-7 rounded border border-[#ff6a00] bg-opacity-30 text-[#ff6a00]">
                                         <FaRegCheckCircle className='w-5 h-5' />
                                     </span>
@@ -131,12 +119,12 @@ const ProductDetails = () => {
                             </ul>
                         </div>
 
-                        <div className="mt-12 pt-12 border-t border-gray-100 grid grid-cols-2 gap-6">
-                            <div className='bg-gray-300 p-5 rounded-xl shadow-md hover:shadow-xl cursor-pointer'>
+                        <div className="mt-6 pt-6 border-t-2 border-dashed border-[#ff6a00] grid grid-cols-2 gap-4">
+                            <div className='bg-gray-200 p-6 rounded-xl shadow-md hover:shadow-xl cursor-pointer'>
                                 <h4 className="font-bold text-gray-900 mb-2">Craftsmanship</h4>
                                 <p className="text-sm">Hand-carved in Tabaka, Kenya by local artisans.</p>
                             </div>
-                            <div className='bg-gray-300 p-5 rounded-xl shadow-md hover:shadow-xl cursor-pointer'>
+                            <div className='bg-gray-200 p-6 rounded-xl shadow-md hover:shadow-xl cursor-pointer'>
                                 <h4 className="font-bold text-gray-900 mb-2">Material</h4>
                                 <p className="text-sm">100% Natural Soapstone with traditional finish.</p>
                             </div>

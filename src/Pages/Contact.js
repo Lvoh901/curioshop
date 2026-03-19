@@ -104,33 +104,36 @@ const Contact = () => {
                 }}
             />
             {/* Overlay for better readability */}
-            <div className="absolute inset-0 z-10 bg-gradient-to-br from-[#fff7e6]/80 to-[#e0e7ff]/80 pointer-events-none" />
+            <div className="absolute inset-0 z-10 bg-gradient-to-br from-[#fff7e6]/50 to-[#e0e7ff]/80 pointer-events-none" />
             <motion.div
-                className="relative z-20 w-full max-w-2xl bg-white/90 p-8 rounded-2xl shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-8"
+                className="relative z-20 w-full max-w-5xl bg-white p-16 rounded-2xl shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
             >
                 {/* Contact Info */}
-                <div className="flex flex-col justify-center space-y-6 border-b md:border-b-0 md:border-r border-gray-200 pr-0 md:pr-6 pb-6 md:pb-0">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                <div className="flex flex-col space-y-4 border-b md:border-b-0 md:border-r border-dashed border-[#ff6a00] pr-0 md:pr-6 pb-6 md:pb-0">
+                    <h2 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
                         <RiMailSendLine className="text-[#ff6a00] text-2xl" />
-                        Contact Us
+                        Reach Out
                     </h2>
-                    <p className="text-gray-800 mb-2">
-                        We'd love to hear from you! Fill out the form or reach us directly:
+                    <p className="text-gray-800 font-medium">
+                        We'd love to hear from you! Fill out the form we will get back to you as soon as possible:
                     </p>
+
                     <div className="flex items-center gap-2 text-gray-700">
                         <RiPhoneLine className="text-[#ff6a00] w-8 h-8" />
-                        <span className="font-medium">0705634476 / 0705091175</span>
+                        <p className="italic">0705634476 / 0705091175</p>
                     </div>
+
                     <div className="flex items-center gap-2 text-gray-700">
                         <RiMailSendLine className="text-[#ff6a00] w-8 h-8" />
-                        <span className="font-medium">info@jakem.com</span>
+                        <p className="italic">info@jakem.com</p>
                     </div>
+
                     <div className="flex items-center gap-2 text-gray-700">
                         <RiMapPin2Line className="text-[#ff6a00] w-8 h-8" />
-                        <span className="font-medium">Tabaka, Kisii County, <br /> Ngong Town <br /> Nairobi, Kenya</span>
+                        <p className="italic">Tabaka, Kisii County, Ngong Town Nairobi, Kenya</p>
                     </div>
                 </div>
                 {/* Contact Form */}
@@ -165,7 +168,7 @@ const Contact = () => {
                                 noValidate
                             >
                                 <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                                    <label htmlFor="name" className="block text-sm font-bold uppercase text-gray-700">
                                         Name
                                     </label>
                                     <input
@@ -187,7 +190,7 @@ const Contact = () => {
                                     )}
                                 </div>
                                 <div>
-                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                                    <label htmlFor="email" className="block text-sm font-bold uppercase text-gray-700">
                                         Email
                                     </label>
                                     <input
@@ -209,7 +212,7 @@ const Contact = () => {
                                     )}
                                 </div>
                                 <div>
-                                    <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                                    <label htmlFor="message" className="block text-sm font-bold uppercase text-gray-700">
                                         Message
                                     </label>
                                     <textarea
@@ -237,7 +240,7 @@ const Contact = () => {
                                 <div>
                                     <button
                                         type="submit"
-                                        className={`w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#ffb400] hover:bg-[#e0a000] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffb400] transition ${submitting ? 'opacity-60 cursor-not-allowed' : ''
+                                        className={`w-[1/2] flex justify-center items-center py-3 px-6 border border-transparent rounded-md shadow-sm text-sm font-bold uppercase text-white bg-[#ffb400] hover:bg-[#e0a000] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffb400] transition ${submitting ? 'opacity-60 cursor-not-allowed' : ''
                                             }`}
                                         disabled={submitting}
                                     >

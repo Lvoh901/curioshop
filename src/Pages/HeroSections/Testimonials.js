@@ -2,30 +2,35 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { RiStarFill, RiStarHalfFill, RiStarLine } from 'react-icons/ri';
 
+// users
+import User1 from '../../images/user1.jpg';
+import User2 from '../../images/user2.jpg';
+import User3 from '../../images/user3.jpg';
+
 const Testimonials = () => {
     const testimonials = [
         {
             id: 1,
             name: 'Sarah Johnson',
             role: 'Interior Designer',
-            text: "The unique pieces from Curioshop transformed my client's living space into a conversation starter. Quality and craftsmanship beyond expectations!",
-            avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
+            text: "The unique pieces that have transformed my living space. Quality and craftsmanship beyond expectations!",
+            avatar: User1,
             rating: 4.5
         },
         {
             id: 2,
-            name: 'Michael Chen',
+            name: 'Mike Macharia',
             role: 'Collector',
-            text: "I've found truly one-of-a-kind items here that perfectly complement my vintage collection. Exceptional customer service too!",
-            avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+            text: "I've found truly one-of-a-kind items here that perfectly complement my vintage collection.",
+            avatar: User2,
             rating: 5
         },
         {
             id: 3,
-            name: 'Emma Wilson',
+            name: 'Emma Evans',
             role: 'Home Owner',
-            text: 'Every piece tells a story. The curation is impeccable and delivery was seamless. My home has never looked better!',
-            avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
+            text: 'Every piece tells a story. Curation is impeccable and seamless delivery. My home has never looked better!',
+            avatar: User3,
             rating: 4
         }
     ];
@@ -101,27 +106,27 @@ const Testimonials = () => {
                         <motion.article
                             key={testimonial.id}
                             variants={itemVariants}
-                            className="relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-8 cursor-pointer border hover:border-[#ff6a00]"
+                            className="relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-8 cursor-pointer border-2 hover:border-[#ff6a00]"
                             whileHover={{ y: -10 }}
                         >
-                            <div className="flex flex-col items-center mb-6">
+                            <div className="flex flex-col items-center mb-2">
                                 <img
                                     src={testimonial.avatar}
                                     alt={testimonial.name}
-                                    className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
+                                    className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md"
                                 />
 
-                                <div className="py-2">
+                                <div className="pt-2">
                                     {renderStars(testimonial.rating)}
                                 </div>
 
-                                <div>
+                                <div className='text-center'>
                                     <h4 className="text-lg font-semibold text-gray-800">{testimonial.name}</h4>
                                     <small className="text-gray-500">{testimonial.role}</small>
                                 </div>
                             </div>
 
-                            <p className="text-gray-600 leading-relaxed">
+                            <p className="text-gray-600 leading-relaxed text-center font-medium">
                                 {testimonial.text}
                             </p>
                         </motion.article>

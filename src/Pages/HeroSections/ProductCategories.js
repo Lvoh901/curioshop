@@ -49,7 +49,7 @@ const ProductCategories = () => {
 
     return (
         <section className="bg-gray-100 py-16">
-            <div className="max-w-5xl mx-auto px-4 lg:px-8">
+            <div className="max-w-6xl mx-auto px-4 lg:px-8">
                 <div className="text-center mb-12">
                     <span className="underline underline-offset-4 font-bold decoration-4 decoration-[#ff6a00] uppercase text-sm tracking-wider">Our Collections</span>
                     <h2 className='text-3xl font-bold text-gray-800 mt-2'>Shop by Category</h2>
@@ -92,7 +92,7 @@ const ProductCategories = () => {
                                     <h3 className="text-white font-bold text-xl group-hover:text-[#ffb400] transition-colors">
                                         {category.name}
                                     </h3>
-                                    <p className="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <p className="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-bold">
                                         Explore Collection &rarr;
                                     </p>
                                 </div>

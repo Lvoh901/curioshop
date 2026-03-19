@@ -12,7 +12,7 @@ const MainHero = () => {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="text-lg text-[#ffb400] uppercase font-medium underline underline-offset-4 decoration-wavy mb-2"
+                    className="text-lg text-[#ffb400] uppercase font-bold underline underline-offset-4 decoration-wavy mb-2"
                 >
                     Special Offer
                 </motion.p>
