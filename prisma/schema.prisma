@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  admin
+  editor
+  viewer
+}
+
+enum CurationStatus {
+  draft
+  published
+  archived
+}
+
+enum MessageStatus {
+  new
+  read
+  replied
+  archived
+}
+
+model User {
+  id               String     @id @default(uuid()) @db.Uuid
+  email            String     @unique @db.Citext
+  name             String
+  role             UserRole   @default(viewer)
+  passwordHash     String?    @map("password_hash")
+  createdAt        DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt        DateTime   @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  createdCurations Curation[] @relation("CreatedCurations")
+  assignedMessages Message[]  @relation("AssignedMessages")
+
+  @@map("users")
+}
+
+model Curation {
+  id          String         @id @default(uuid()) @db.Uuid
+  title       String
+  slug        String         @unique
+  coverImageUrl String       @map("cover_image_url")
+  description String?
+  status      CurationStatus @default(draft)
+  createdBy   String         @map("created_by") @db.Uuid
+  publishedAt DateTime?      @map("published_at") @db.Timestamptz(6)
+  createdAt   DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime       @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  creator     User           @relation("CreatedCurations", fields: [createdBy], references: [id], onDelete: Restrict)
+  items       CurationItem[]
+  curationTags CurationTag[]
+
+  @@index([status])
+  @@index([createdBy])
+  @@map("curations")
+}
+
+model CurationItem {
+  id         String   @id @default(uuid()) @db.Uuid
+  curationId String   @map("curation_id") @db.Uuid
+  title      String
+  content    String?
+  imageUrl   String?  @map("image_url")
+  linkUrl    String?  @map("link_url")
+  sortOrder  Int      @default(0) @map("sort_order")
+  isVisible  Boolean  @default(true) @map("is_visible")
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  curation   Curation @relation(fields: [curationId], references: [id], onDelete: Cascade)
+
+  @@index([curationId, sortOrder])
+  @@map("curation_items")
+}
+
+model Message {
+  id         String        @id @default(uuid()) @db.Uuid
+  name       String
+  email      String        @db.Citext
+  subject    String?
+  message    String
+  status     MessageStatus @default(new)
+  assignedTo String?       @map("assigned_to") @db.Uuid
+  repliedAt  DateTime?     @map("replied_at") @db.Timestamptz(6)
+  createdAt  DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime      @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  assignee   User?         @relation("AssignedMessages", fields: [assignedTo], references: [id], onDelete: SetNull)
+
+  @@index([status])
+  @@index([assignedTo])
+  @@map("messages")
+}
+
+model Tag {
+  id          String        @id @default(uuid()) @db.Uuid
+  name        String        @unique
+  slug        String        @unique
+  createdAt   DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime      @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  curationTags CurationTag[]
+
+  @@map("tags")
+}
+
+model CurationTag {
+  curationId String   @map("curation_id") @db.Uuid
+  tagId      String   @map("tag_id") @db.Uuid
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  curation   Curation @relation(fields: [curationId], references: [id], onDelete: Cascade)
+  tag        Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([curationId, tagId])
+  @@map("curation_tags")
+}

@@ -5,8 +5,10 @@ import { motion } from 'framer-motion';
 import { RiLockPasswordLine, RiUserLine, RiArrowRightLine, RiErrorWarningLine } from 'react-icons/ri';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function AdminLoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -16,17 +18,26 @@ export default function AdminLoginPage() {
     e.preventDefault();
     setIsLoading(true);
     setError('');
-
-    // Simulate authentication delay
-    setTimeout(() => {
-      if (email === 'admin@curio.com' && password === 'admin123') {
-        // Successful login simulation
-        window.location.href = '/admin/dashboard'; // Placeholder for dashboard
-      } else {
-        setError('Invalid credentials. Access restricted to authorized curators.');
-        setIsLoading(false);
+    try {
+      const response = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        setError(data?.error ?? 'Invalid credentials. Access restricted to authorized curators.');
+        return;
       }
-    }, 1500);
+      router.push('/admin/dashboard');
+      router.refresh();
+    } catch {
+      setError('Login failed. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -40,7 +51,7 @@ export default function AdminLoginPage() {
       {/* dark overlay */}
       <div
         className="absolute inset-0 z-10"
-        style={{ backgroundColor: "rgba(0,0,0,0.66)" }}
+        style={{ backgroundColor: "rgba(0,0,0,0.7)" }}
         aria-hidden="true"
       />
       <motion.div
@@ -131,6 +142,12 @@ export default function AdminLoginPage() {
 
         <p className="text-center mt-4 text-stone-200 text-xs font-light drop-shadow">
           Authorized Curators Only. All access attempts are logged.
+        </p>
+        <p className="text-center mt-2 text-stone-300 text-xs font-light drop-shadow">
+          First-time setup?{" "}
+          <Link className="underline underline-offset-2 hover:text-white" href="/admin/register">
+            Register admin
+          </Link>
         </p>
       </motion.div>
     </div>

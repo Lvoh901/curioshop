@@ -16,6 +16,29 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Prisma Setup (Neon)
+
+Run this once after cloning:
+
+```bash
+cp .env.example .env.local
+# then edit .env.local and set your real DATABASE_URL
+# also set UPLOADTHING_TOKEN for curation image uploads
+# generate ADMIN_SESSION_SECRET:
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
+npm install
+npm run prisma:generate
+npm run prisma:push
+```
+
+Useful Prisma commands:
+
+```bash
+npm run prisma:migrate
+npm run prisma:studio
+```
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
