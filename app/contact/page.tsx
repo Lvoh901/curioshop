@@ -38,7 +38,7 @@ export default function ContactPage() {
 
   const validate = () => {
     let valid = true;
-    let newErrors = { ...initialErrors };
+    const newErrors = { ...initialErrors };
 
     if (!form.name.trim()) {
       newErrors.name = 'Please tell us your name';
