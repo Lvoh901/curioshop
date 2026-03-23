@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-serif: var(--font-dmserifdisplay);
+  --font-sans: var(--font-montserrat);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #fafaf9;
+    /* Warm stone-50 background for light mode */
+    --foreground: #1c1917;
+    /* Warm stone-900 foreground */
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-dmserifdisplay), serif;
+}
+
+/* typography */
+h2 {
+  font-size: 1.5em;
+  font-family: "DM Serif Display", serif;
+}
+
+h3 {
+  font-size: 1.17em;
+  font-family: "DM Serif Display", serif;
+}
+
+h4 {
+  font-size: 1em;
+  font-family: "DM Serif Display", serif;
+}
+
+h5 {
+  font-size: 0.83em;
+  font-family: "DM Serif Display", serif;
+}
+
+h6 {
+  font-size: 0.67em;
+  font-family: "DM Serif Display", serif;
+}
+
+/* typography */
