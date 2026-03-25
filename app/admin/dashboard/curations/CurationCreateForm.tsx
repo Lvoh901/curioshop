@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { RiAddLine, RiCloseLine } from "react-icons/ri";
 import { UploadButton } from "@/lib/uploadthing";
 
@@ -14,6 +15,8 @@ function toSlug(value: string) {
     .replace(/-+/g, "-");
 }
 
+import Swal from "sweetalert2";
+
 export default function CurationCreateForm() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -24,20 +27,22 @@ export default function CurationCreateForm() {
   const [status, setStatus] = useState<"draft" | "published" | "archived">("draft");
   const [publishedAt, setPublishedAt] = useState("");
   const [isSaving, setIsSaving] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
 
   const effectiveSlug = useMemo(() => toSlug(slug || title), [slug, title]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setError("");
-    setSuccess("");
     setIsSaving(true);
 
     try {
       if (!coverImageUrl) {
-        setError("Cover image is required.");
+        Swal.fire({
+          icon: "warning",
+          title: "Missing Information",
+          text: "Cover image is required.",
+          confirmButtonColor: "#1c1917",
+        });
+        setIsSaving(false);
         return;
       }
 
@@ -56,20 +61,37 @@ export default function CurationCreateForm() {
 
       const data = await response.json();
       if (!response.ok) {
-        setError(data?.error ?? "Could not create curation.");
+        Swal.fire({
+          icon: "error",
+          title: "Error Creating Curation",
+          text: data?.error ?? "Could not create curation.",
+          confirmButtonColor: "#1c1917",
+        });
         return;
       }
 
-      setSuccess("Curation created successfully.");
+      Swal.fire({
+        icon: "success",
+        title: "Curation Created",
+        text: "Your curation has been successfully created.",
+        confirmButtonColor: "#059669",
+      });
+
       setTitle("");
       setSlug("");
       setDescription("");
       setCoverImageUrl("");
       setStatus("draft");
       setPublishedAt("");
+      setOpen(false);
       router.refresh();
     } catch {
-      setError("Failed to create curation. Try again.");
+      Swal.fire({
+        icon: "error",
+        title: "Unexpected Error",
+        text: "Failed to create curation. Try again.",
+        confirmButtonColor: "#1c1917",
+      });
     } finally {
       setIsSaving(false);
     }
@@ -137,8 +159,8 @@ export default function CurationCreateForm() {
             </label>
           </div>
 
-          <label className="text-sm text-stone-700 block">
-            Cover Image
+          <div className="block">
+            <span className="text-sm text-stone-700">Cover Image</span>
             <div className="mt-2 flex flex-col gap-3">
               <UploadButton
                 endpoint="curationImage"
@@ -146,11 +168,15 @@ export default function CurationCreateForm() {
                   const first = res?.[0];
                   if (first?.ufsUrl) {
                     setCoverImageUrl(first.ufsUrl);
-                    setError("");
                   }
                 }}
                 onUploadError={(uploadError) => {
-                  setError(uploadError.message || "Image upload failed.");
+                  Swal.fire({
+                    icon: "error",
+                    title: "Upload Failed",
+                    text: uploadError.message || "Image upload failed.",
+                    confirmButtonColor: "#1c1917",
+                  });
                 }}
                 appearance={{
                   button:
@@ -160,9 +186,11 @@ export default function CurationCreateForm() {
               />
               {coverImageUrl ? (
                 <div className="rounded-lg border border-stone-200 p-2 w-fit">
-                  <img
+                  <Image
                     src={coverImageUrl}
                     alt="Cover preview"
+                    width={96}
+                    height={96}
                     className="h-24 w-24 object-cover rounded"
                   />
                   <p className="mt-2 text-xs text-emerald-600">Image uploaded successfully.</p>
@@ -171,7 +199,7 @@ export default function CurationCreateForm() {
                 <p className="text-xs text-stone-500">Upload one cover image (required).</p>
               )}
             </div>
-          </label>
+          </div>
 
           <label className="text-sm text-stone-700 block">
             Description (optional)
@@ -183,9 +211,6 @@ export default function CurationCreateForm() {
               placeholder="Short note about this curation."
             />
           </label>
-
-          {error ? <p className="text-sm text-red-600">{error}</p> : null}
-          {success ? <p className="text-sm text-emerald-600">{success}</p> : null}
 
           <div className="flex justify-end">
             <button

@@ -5,15 +5,15 @@ import { motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
 
 // Import images as StaticImageData for type safety with next/image
-import animalFigurinesImg from '../../public/images/animal_figurines.jpg';
-import decorativeBowlsImg from '../../public/images/decorative_bowls.jpg';
-import candleHoldersImg from '../../public/images/candle_holders.jpg';
-import sculpturesImg from '../../public/images/sculptures.jpg';
-import abstractArtPieceImg from '../../public/images/abstract_art_piece.jpg';
-import soapstoneJewelleryImg from '../../public/images/soapstone_jewellery.jpg';
-import customizedCarvingsImg from '../../public/images/customized_carvings.jpg';
-import keyholdersImg from '../../public/images/keyholders.png';
-import householdDecorImg from '../../public/images/household_decor.png';
+import animalFigurinesImg from '@/public/images/animal_figurines.jpg';
+import decorativeBowlsImg from '@/public/images/decorative_bowls.jpg';
+import candleHoldersImg from '@/public/images/candle_holders.jpg';
+import sculpturesImg from '@/public/images/sculptures.jpg';
+import abstractArtPieceImg from '@/public/images/abstract_art_piece.jpg';
+import soapstoneJewelleryImg from '@/public/images/soapstone_jewellery.jpg';
+import customizedCarvingsImg from '@/public/images/customized_carvings.jpg';
+import keyholdersImg from '@/public/images/keyholders.png';
+import householdDecorImg from '@/public/images/household_decor.png';
 
 interface Category {
     id: number;
@@ -34,16 +34,6 @@ export default function ProductCategories() {
         { id: 9, name: "Household Décor", image: householdDecorImg }
     ];
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
-    };
-
     return (
         <section className="bg-gray-200 py-16">
             <div className="container mx-auto px-4 lg:px-8">
@@ -54,7 +44,6 @@ export default function ProductCategories() {
 
                 <motion.div
                     className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                    variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}

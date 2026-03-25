@@ -93,59 +93,49 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-stone-100 mt-8 py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex items-center" style={{ backgroundImage: "url(/images/back02.jpg)", minHeight: "100%" }}>
+    <div className="min-h-screen bg-stone-100 mt-12 py-14 px-2 sm:py-20 sm:px-6 lg:px-8 relative overflow-hidden flex flex-col items-center" style={{ backgroundImage: "url(/images/back02.jpg)", minHeight: "100%" }}>
       {/* Proper black overlay */}
       <div className="absolute inset-0 z-0" style={{ backgroundColor: "rgba(0,0,0,0.8)" }}></div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="w-full max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-4">
           <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
             className="font-serif font-bold text-white text-2xl lg:text-3xl"
           >
             Get in Touch
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
             className="text-white max-w-2xl mx-auto font-bold"
           >
             Whether you&apos;re looking for a specific artifact or want to learn more about our collection, we&apos;re here to help. We will get back to you as soon as possible.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 items-start w-full">
           {/* Contact Information Cards */}
-          <div className="lg:col-span-1 space-y-2">
+          <div className="lg:col-span-1 space-y-2 w-full">
             {contactMethods.map((method, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                className="bg-white p-2 rounded-2xl shadow-sm border border-stone-100 flex items-center gap-5 transition-shadow hover:shadow-md cursor-pointer"
+                className="bg-white p-2 rounded-2xl shadow-sm border border-stone-100 flex items-center gap-5 transition-shadow hover:shadow-md cursor-pointer w-full"
               >
                 <div className={`p-4 rounded-xl ${method.color}`}>
                   <method.icon className="w-6 h-6" />
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-stone-400">{method.label}</p>
-                  <p className="text-stone-900 font-bold text-sm">{method.value}</p>
+                  <p className="text-stone-900 font-bold text-sm break-words">{method.value}</p>
                 </div>
               </motion.div>
             ))}
 
             <div className="pt-6">
               <p className="text-sm font-bold text-white uppercase tracking-widest mb-4 px-2 text-center underline underline-offset-4 decoration-[#ffb400] decoration-4">Follow our journey</p>
-              <div className="flex justify-center gap-4 px-2">
+              <div className="flex justify-center gap-4 px-2 flex-wrap">
                 {socialLinks.map((social, idx) => (
                   <motion.a
                     key={idx}
                     href={social.href}
-                    whileHover={{ y: -3 }}
                     className="p-3 bg-stone-400 text-black rounded-full hover:bg-stone-300 transition-colors hover:shadow-lg shadow-[#ffb400]"
                     aria-label={social.label}
                   >
@@ -157,13 +147,11 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Form Card */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 w-full">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-white rounded-xl overflow-hidden"
+              className="bg-white rounded-xl overflow-hidden w-full"
             >
-              <div className="p-8">
+              <div className="p-4 xs:p-6 sm:p-8">
                 <AnimatePresence mode="wait">
                   {submitted ? (
                     <motion.div
@@ -217,7 +205,6 @@ export default function ContactPage() {
                           {errors.email && <p className="text-xs text-red-500 ml-1 flex items-center gap-1"><RiErrorWarningLine /> {errors.email}</p>}
                         </div>
                       </div>
-
                       <div className="space-y-2">
                         <label className="text-sm font-bold text-stone-900 uppercase tracking-wider ml-1">Your Message</label>
                         <textarea
@@ -230,14 +217,12 @@ export default function ContactPage() {
                         />
                         {errors.message && <p className="text-xs text-red-500 ml-1 flex items-center gap-1"><RiErrorWarningLine /> {errors.message}</p>}
                       </div>
-
                       {submitError && (
                         <div className="p-4 bg-red-50 text-red-700 rounded-2xl text-sm flex items-center gap-3">
                           <RiErrorWarningLine className="text-xl shrink-0" />
                           {submitError}
                         </div>
                       )}
-
                       <button
                         type="submit"
                         disabled={submitting}

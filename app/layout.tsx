@@ -2,10 +2,6 @@ import type { Metadata } from "next";
 import { DM_Serif_Display, Montserrat } from "next/font/google";
 import "./globals.css";
 import "@uploadthing/react/styles.css";
-import Navbar from "@/components/Navbar";
-import Footer from "./Footer";
-import { getAdminSession } from "@/lib/auth";
-
 // Required field 'weight' added as per Next.js font API
 const dmserifdisplay = DM_Serif_Display({
   variable: "--font-dmserifdisplay",
@@ -46,20 +42,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const adminSession = await getAdminSession();
-  const showMainShell = !adminSession;
-
   return (
     <html
       lang="en"
       className={`${dmserifdisplay.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        {showMainShell ? <Navbar /> : null}
-        <div className="">
-          {children}
-        </div>
-        {showMainShell ? <Footer /> : null}
+        {/* Force Tailwind scanning for responsive utilities */}
+        <div className="hidden lg:hidden lg:block lg:flex" aria-hidden="true" />
+        {children}
       </body>
     </html>
   );

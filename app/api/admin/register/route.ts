@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { hash } from "bcryptjs";
+import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { ADMIN_SESSION_COOKIE, createAdminSessionToken } from "@/lib/auth";
 
@@ -24,19 +25,19 @@ export async function POST(request: Request) {
       );
     }
 
-    const existingAdmin = await prisma.user.count({
-      where: { role: "admin" },
-    });
+    // const existingAdmin = await prisma.user.count({
+    //   where: { role: "admin" },
+    // });
 
-    if (existingAdmin > 0) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "Admin registration is disabled after first setup.",
-        },
-        { status: 403 }
-      );
-    }
+    // if (existingAdmin > 0) {
+    //   return NextResponse.json(
+    //     {
+    //       ok: false,
+    //       error: "Admin registration is disabled after first setup.",
+    //     },
+    //     { status: 403 }
+    //   );
+    // }
 
     const existingUser = await prisma.user.findUnique({
       where: { email },
@@ -72,12 +73,8 @@ export async function POST(request: Request) {
       role: user.role,
     });
 
-    const response = NextResponse.json(
-      { ok: true, message: "Admin account created." },
-      { status: 201 }
-    );
-
-    response.cookies.set(ADMIN_SESSION_COOKIE, sessionToken, {
+    const cookieStore = await cookies();
+    cookieStore.set(ADMIN_SESSION_COOKIE, sessionToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
@@ -85,8 +82,12 @@ export async function POST(request: Request) {
       maxAge: 60 * 60 * 24 * 7,
     });
 
-    return response;
-  } catch {
+    return NextResponse.json(
+      { ok: true, message: "Admin account created." },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("ADMIN_REGISTRATION_ERROR:", error);
     return NextResponse.json(
       { ok: false, error: "Failed to create admin account." },
       { status: 500 }

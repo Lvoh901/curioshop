@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import { RiStarFill, RiStarHalfFill, RiStarLine } from 'react-icons/ri';
 
 // users
-import User1 from '../../public/images/user1.jpg';
-import User2 from '../../public/images/user2.jpg';
-import User3 from '../../public/images/user3.jpg';
+import User1 from '@/public/images/user1.jpg';
+import User2 from '@/public/images/user2.jpg';
+import User3 from '@/public/images/user3.jpg';
 import Image, { StaticImageData } from 'next/image';
 
 type Testimonial = {
@@ -63,31 +63,15 @@ export default function Testimonials() {
         );
     };
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2
-            }
-        }
-    };
-
     return (
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-gray-100">
             <div className="max-w-5xl mx-auto">
                 <motion.h2
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
                     className="text-3xl sm:text-4xl font-bold text-center text-gray-800"
                 >
                     Hear From Our Happy Customers
                 </motion.h2>
                 <motion.p
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
                     className="text-center text-gray-600 mb-12"
                 >
                     Share some details here. This is flexible section where you can share anything you want.
@@ -95,7 +79,6 @@ export default function Testimonials() {
 
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 px-4 lg:px-8"
-                    variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}

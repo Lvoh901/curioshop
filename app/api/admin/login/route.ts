@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { compare } from "bcryptjs";
+import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { ADMIN_SESSION_COOKIE, createAdminSessionToken } from "@/lib/auth";
 
@@ -34,10 +35,17 @@ export async function POST(request: Request) {
     }
 
     const isValidPassword = await compare(password, user.passwordHash);
-    if (!isValidPassword || user.role !== "admin") {
+    if (!isValidPassword) {
       return NextResponse.json(
         { ok: false, error: "Invalid credentials." },
         { status: 401 }
+      );
+    }
+
+    if (user.role !== "admin") {
+      return NextResponse.json(
+        { ok: false, error: "Access denied. Admin role required." },
+        { status: 403 }
       );
     }
 
@@ -47,8 +55,8 @@ export async function POST(request: Request) {
       role: user.role,
     });
 
-    const response = NextResponse.json({ ok: true }, { status: 200 });
-    response.cookies.set(ADMIN_SESSION_COOKIE, sessionToken, {
+    const cookieStore = await cookies();
+    cookieStore.set(ADMIN_SESSION_COOKIE, sessionToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
@@ -56,7 +64,7 @@ export async function POST(request: Request) {
       maxAge: 60 * 60 * 24 * 7,
     });
 
-    return response;
+    return NextResponse.json({ ok: true }, { status: 200 });
   } catch {
     return NextResponse.json(
       { ok: false, error: "Login failed. Try again." },

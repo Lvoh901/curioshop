@@ -1,3 +1,4 @@
+import Image from "next/image";
 import CurationCreateForm from "./CurationCreateForm";
 import { getCurationsForTable } from "../_lib/data";
 
@@ -39,9 +40,11 @@ export default async function AdminCurationsPage() {
                 curations.map((curation) => (
                   <tr key={curation.id} className="border-b border-stone-100 align-top">
                     <td className="py-3 pr-4">
-                      <img
+                      <Image
                         src={curation.coverImageUrl}
                         alt={`${curation.title} cover`}
+                        width={48}
+                        height={48}
                         className="h-12 w-12 rounded object-cover border border-stone-200"
                       />
                     </td>

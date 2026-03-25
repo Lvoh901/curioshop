@@ -2,8 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { products } from '../../Data/Products';
 import { notFound } from 'next/navigation';
-import { MdNotListedLocation } from 'react-icons/md';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+import { FaLocationDot } from 'react-icons/fa6';
 
 function StarRating({ rating }: { rating: number }) {
   const stars = [];
@@ -23,7 +23,7 @@ function StarRating({ rating }: { rating: number }) {
   return (
     <div className="flex items-center gap-1">
       {stars}
-      <span className="ml-2 text-stone-400 text-sm font-medium">({rating})</span>
+      <p className="ml-2 text-stone-400 text-sm">({rating})</p>
     </div>
   );
 }
@@ -41,8 +41,8 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="pt-4 mb-4">
-        <Link href="/gallery" className="text-stone-500 hover:text-stone-900 transition-colors flex items-center gap-2 font-medium">
-          <span className="text-xl">←</span> Back to The Gallery
+        <Link href="/gallery" className="text-stone-500 hover:text-stone-900 transition-colors flex items-center gap-2 font-bold">
+          <span className="text-xl">←</span> Gallery
         </Link>
       </div>
 
@@ -63,7 +63,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
         </div>
 
         {/* Product Info Section */}
-        <div className="space-y-10">
+        <div className="space-y-4">
           <header>
             <div className="flex items-center gap-4 mb-4">
               <span className="px-3 py-1 bg-stone-100 text-stone-600 text-xs uppercase tracking-[0.2em] font-bold rounded-full border border-stone-200">
@@ -73,34 +73,30 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
                 <StarRating rating={product.rating} />
               </span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-stone-900 leading-tight">
+            <h2 className="font-serif font-black text-stone-900 leading-tight">
               {product.title}
-            </h1>
+            </h2>
           </header>
 
           <div className="space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="mt-1 text-stone-400">
-                <MdNotListedLocation />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-stone-900 uppercase tracking-widest mb-1">Available At</h4>
-                <p className="text-stone-600 font-light">{product.shop}</p>
-              </div>
+            <div className="flex items-start gap-2 pt-3">
+              <FaLocationDot className='text-[#ffb400]' />
+              <p className="text-sm font-bold text-stone-900 uppercase mb-1">Available At : <b className="text-stone-600 font-light">{product.shop}</b></p>
             </div>
 
-            <div className="border-t border-stone-200 pt-4">
-              <p className="text-md text-stone-600 leading-relaxed font-light italic">
+            <div className="border-b border-stone-200 pb-2">
+              <p className="text-md leading-relaxed">
                 &quot;{product.description}&quot;
               </p>
             </div>
           </div>
 
-          <div className="pt-4 flex flex-col sm:flex-row gap-4">
-            <button className="flex-1 py-5 text-white text-xl bg-stone-900 hover:bg-stone-800 shadow-lg transition-all active:scale-95 cursor-pointer">
+          <div className="pt-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <button className="flex-1 py-3 text-white hover:text-[#ffb400] text-md bg-stone-900 hover:bg-stone-800 font-bold shadow-lg transition-all active:scale-95 cursor-pointer">
               Acquire this Piece
             </button>
-            <button className="flex-1 py-5 text-gray-500 text-xl border border-gray-500 hover:text-white hover:bg-stone-500 transition-all active:scale-95 cursor-pointer">
+
+            <button className="flex-1 py-3 text-gray-800 hover:text-[#ffb400] text-md border border-gray-500 hover:bg-stone-500 font-bold transition-all active:scale-95 cursor-pointer">
               Enquire Details
             </button>
           </div>

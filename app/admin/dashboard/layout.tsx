@@ -24,8 +24,8 @@ export default async function AdminDashboardLayout({
   return (
     <div className="min-h-screen bg-stone-50">
       <AdminSidebar displayName={displayName} email={email} />
-      <main className="lg:pl-56">
-        <div className="pt-5 px-4 lg:px-6">{children}</div>
+      <main className="lg:pl-64 pt-16 lg:pt-0">
+        <div className="p-4 sm:p-6 lg:p-8">{children}</div>
       </main>
     </div>
   );

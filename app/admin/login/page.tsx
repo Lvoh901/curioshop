@@ -2,22 +2,23 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { RiLockPasswordLine, RiUserLine, RiArrowRightLine, RiErrorWarningLine } from 'react-icons/ri';
+import { RiLockPasswordLine, RiUserLine, RiArrowRightLine, RiHome9Line } from 'react-icons/ri';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+
+import Swal from 'sweetalert2';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 export default function AdminLoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
     try {
       const response = await fetch('/api/admin/login', {
         method: 'POST',
@@ -28,20 +29,41 @@ export default function AdminLoginPage() {
       });
       const data = await response.json();
       if (!response.ok) {
-        setError(data?.error ?? 'Invalid credentials. Access restricted to authorized curators.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Failed',
+          text: data?.error ?? 'Invalid credentials. Access restricted to authorized curators.',
+          confirmButtonColor: '#1c1917',
+        });
         return;
       }
-      router.push('/admin/dashboard');
-      router.refresh();
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Welcome Back',
+        text: 'Access granted. Redirecting to vault...',
+        timer: 1500,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      });
+
+      setTimeout(() => {
+        router.push('/admin/dashboard');
+      }, 1500);
     } catch {
-      setError('Login failed. Please try again.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Login failed. Please try again.',
+        confirmButtonColor: '#1c1917',
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center pt-12 px-4 overflow-hidden">
       {/* Proper image background */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-center"
@@ -55,23 +77,20 @@ export default function AdminLoginPage() {
         aria-hidden="true"
       />
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
         className="relative z-20 max-w-md w-full"
       >
-        <div className="text-center mb-5 flex flex-col justify-center items-center">
-          <Image src="/jakem_logo.png" alt='login_logo' width={56} height={56} className='' />
-          <Link href="/" className="inline-block">
-            <h2 className="font-serif font-bold text-white drop-shadow tracking-tight">
-              Jakem Business Solutions
-            </h2>
-          </Link>
-          <p className="text-sm font-bold uppercase tracking-[0.3em] text-stone-100 drop-shadow">
-            Vault Access
-          </p>
-        </div>
-
         <div className="bg-white bg-opacity-95 p-10 rounded-3xl shadow-xl shadow-stone-900/10 border border-stone-100">
+          <Link href="/" className="block mb-5 rounded-md group focus:outline-none focus:ring-2 focus:ring-[#ffb400]">
+            <button
+              className="flex gap-2 items-center bg-black p-2 rounded-md text-white transition-colors duration-200 group-hover:text-[#ffb400] group-hover:bg-stone-900 group-active:scale-[0.98] cursor-pointer"
+              type="button"
+            >
+              <RiHome9Line className="w-5 h-5 transition-colors duration-200 group-hover:text-[#ffb400]" />
+              <span className="transition-colors duration-200 group-hover:text-[#ffb400] hover:font-bold">Home</span>
+            </button>
+          </Link>
+
+
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-3">
               <label className="text-xs font-bold text-stone-900 uppercase tracking-widest ml-1">
@@ -112,21 +131,10 @@ export default function AdminLoginPage() {
               </div>
             </div>
 
-            {error && (
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="p-4 bg-red-50 text-red-700 rounded-xl text-xs flex items-center gap-3 border border-red-100"
-              >
-                <RiErrorWarningLine className="text-lg shrink-0" />
-                {error}
-              </motion.div>
-            )}
-
             <button
               type="submit"
               disabled={isLoading}
-              className={`w-full py-5 bg-stone-900 text-white rounded-2xl font-bold text-sm uppercase tracking-widest shadow-lg shadow-stone-200 hover:bg-stone-800 active:scale-[0.98] transition-all flex items-center justify-center gap-3 cursor-pointer ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+              className={`w-full py-5 bg-stone-900 text-white rounded-md font-bold text-sm uppercase tracking-widest shadow-lg shadow-stone-200 hover:bg-stone-800 active:scale-[0.98] transition-all flex items-center justify-center gap-3 cursor-pointer ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
               {isLoading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

@@ -1,0 +1,18 @@
+import Navbar from "@/components/Navbar";
+import Footer from "./Footer";
+
+export default function SiteLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="min-h-full flex flex-col">
+      <Navbar />
+      <main className="flex-grow">
+        {children}
+      </main>
+      <Footer />
+    </div>
+  );
+}
