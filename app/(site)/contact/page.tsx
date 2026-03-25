@@ -7,18 +7,22 @@ import { RiMailSendLine, RiPhoneLine, RiMapPin2Line, RiCheckLine, RiErrorWarning
 const initialFormState = {
   name: '',
   email: '',
+  subject: '',
   message: '',
 };
 
 const initialErrors = {
   name: '',
   email: '',
+  subject: '',
   message: '',
 };
 
 const validateEmail = (email: string) => {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
+
+import { submitContactForm } from './actions';
 
 export default function ContactPage() {
   const [form, setForm] = useState(initialFormState);
@@ -66,17 +70,19 @@ export default function ContactPage() {
 
     setSubmitting(true);
 
-    // Simulate async submission
-    setTimeout(() => {
-      if (form.email === 'fail@example.com') {
-        setSubmitError('Our messenger pigeon got lost. Please try again!');
-        setSubmitting(false);
-        return;
+    try {
+      const result = await submitContactForm(form);
+      if (result.success) {
+        setSubmitted(true);
+        setForm(initialFormState);
+      } else {
+        setSubmitError(result.error || 'Failed to send message. Please try again.');
       }
-      setSubmitted(true);
+    } catch (err) {
+      setSubmitError('An unexpected error occurred. Please try again later.');
+    } finally {
       setSubmitting(false);
-      setForm(initialFormState);
-    }, 1500);
+    }
   };
 
   const contactMethods = [
@@ -204,6 +210,16 @@ export default function ContactPage() {
                           />
                           {errors.email && <p className="text-xs text-red-500 ml-1 flex items-center gap-1"><RiErrorWarningLine /> {errors.email}</p>}
                         </div>
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold text-stone-900 uppercase tracking-wider ml-1">Subject</label>
+                        <input
+                          name="subject"
+                          value={form.subject}
+                          onChange={handleChange}
+                          placeholder="Interested in Custom Carvings"
+                          className="w-full px-5 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-amber-50 focus:border-amber-200 transition-all"
+                        />
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm font-bold text-stone-900 uppercase tracking-wider ml-1">Your Message</label>

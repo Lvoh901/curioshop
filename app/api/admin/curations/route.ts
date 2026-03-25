@@ -84,3 +84,31 @@ export async function POST(request: Request) {
     );
   }
 }
+
+export async function DELETE(request: Request) {
+  const session = await getAdminSession();
+  if (!session || session.role !== "admin") {
+    return NextResponse.json({ ok: false, error: "Unauthorized." }, { status: 401 });
+  }
+
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json({ ok: false, error: "ID is required." }, { status: 400 });
+    }
+
+    await prisma.curation.delete({
+      where: { id },
+    });
+
+    return NextResponse.json({ ok: true }, { status: 200 });
+  } catch (error: unknown) {
+    console.error("Delete curation error:", error);
+    return NextResponse.json(
+      { ok: false, error: "Failed to delete curation." },
+      { status: 500 }
+    );
+  }
+}

@@ -72,6 +72,7 @@ export async function getLatestMessages(limit = 12) {
       name: true,
       email: true,
       subject: true,
+      message: true,
       status: true,
       createdAt: true,
     },

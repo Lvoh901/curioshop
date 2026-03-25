@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { products } from '../../Data/Products';
+import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
@@ -31,12 +31,16 @@ function StarRating({ rating }: { rating: number }) {
 export default async function ProductDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
-  // Find product by matching string ID from URL with numeric ID in Data
-  const product = products.find((p) => p.id.toString() === id);
+  const item = await prisma.curationItem.findUnique({
+    where: { id },
+  });
 
-  if (!product) {
+  if (!item) {
     notFound();
   }
+
+  // Use default rating of 5 since it's not in DB yet
+  const rating = 5;
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -49,17 +53,22 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         {/* Product Image Section */}
         <div className="relative aspect-[4/5] overflow-hidden bg-stone-100 rounded-lg shadow-xl border border-stone-200">
-          <Image
-            src={product.image}
-            alt={product.title}
-            fill
-            className="object-cover"
-            unoptimized
-            priority
-          />
-          <div className="absolute top-6 right-6 bg-black/90 backdrop-blur-md px-6 py-2 text-xl font-bold italic text-[#ffb400] shadow-lg">
-            Ksh. {product.price.toLocaleString()}
-          </div>
+          {item.imageUrl ? (
+            <Image
+              src={item.imageUrl}
+              alt={item.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          ) : (
+            <div className="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400 text-xl font-bold">No Image</div>
+          )}
+          {item.price && (
+            <div className="absolute top-6 right-6 bg-black/90 backdrop-blur-md px-6 py-2 text-xl font-bold italic text-[#ffb400] shadow-lg">
+              Ksh. {item.price.toLocaleString()}
+            </div>
+          )}
         </div>
 
         {/* Product Info Section */}
@@ -67,26 +76,26 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
           <header>
             <div className="flex items-center gap-4 mb-4">
               <span className="px-3 py-1 bg-stone-100 text-stone-600 text-xs uppercase tracking-[0.2em] font-bold rounded-full border border-stone-200">
-                {product.category}
+                {item.category || 'Curiosity'}
               </span>
               <span className="text-[#ffb400] text-lg tracking-wider font-serif">
-                <StarRating rating={product.rating} />
+                <StarRating rating={rating} />
               </span>
             </div>
             <h2 className="font-serif font-black text-stone-900 leading-tight">
-              {product.title}
+              {item.title}
             </h2>
           </header>
 
           <div className="space-y-6">
             <div className="flex items-start gap-2 pt-3">
               <FaLocationDot className='text-[#ffb400]' />
-              <p className="text-sm font-bold text-stone-900 uppercase mb-1">Available At : <b className="text-stone-600 font-light">{product.shop}</b></p>
+              <p className="text-sm font-bold text-stone-900 uppercase mb-1">Available At : <b className="text-stone-600 font-light">{item.shopLocation || 'Custom-made Orders'}</b></p>
             </div>
 
             <div className="border-b border-stone-200 pb-2">
               <p className="text-md leading-relaxed">
-                &quot;{product.description}&quot;
+                &quot;{item.description || 'No description available.'}&quot;
               </p>
             </div>
           </div>

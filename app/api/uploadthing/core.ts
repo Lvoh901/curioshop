@@ -24,6 +24,25 @@ export const uploadRouter = {
         url: file.ufsUrl,
       };
     }),
+  profileImage: f({
+    image: {
+      maxFileSize: "2MB",
+      maxFileCount: 1,
+    },
+  })
+    .middleware(async () => {
+      const session = await getAdminSession();
+      if (!session) {
+        throw new Error("Unauthorized");
+      }
+
+      return { userId: session.sub };
+    })
+    .onUploadComplete(async ({ file }) => {
+      return {
+        url: file.ufsUrl,
+      };
+    }),
 } satisfies FileRouter;
 
 export type UploadRouter = typeof uploadRouter;

@@ -12,7 +12,7 @@ const dmserifdisplay = DM_Serif_Display({
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["400", "700"], // common Montserrat weights, adjust as needed
+  weight: ["400", "700", "800", "900"], // common Montserrat weights, adjust as needed
 });
 
 export const metadata: Metadata = {

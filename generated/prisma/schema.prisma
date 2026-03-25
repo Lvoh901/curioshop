@@ -33,6 +33,7 @@ model User {
   id           String   @id @default(uuid()) @db.Uuid
   email        String   @unique @db.Citext
   name         String
+  image        String?
   role         UserRole @default(viewer)
   passwordHash String?  @map("password_hash")
   createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
@@ -66,16 +67,19 @@ model Curation {
 }
 
 model CurationItem {
-  id         String   @id @default(uuid()) @db.Uuid
-  curationId String   @map("curation_id") @db.Uuid
-  title      String
-  content    String?
-  imageUrl   String?  @map("image_url")
-  linkUrl    String?  @map("link_url")
-  sortOrder  Int      @default(0) @map("sort_order")
-  isVisible  Boolean  @default(true) @map("is_visible")
-  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt  DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  id           String   @id @default(uuid()) @db.Uuid
+  curationId   String   @map("curation_id") @db.Uuid
+  title        String
+  description  String?  @map("content")
+  price        Float?
+  category     String?
+  shopLocation String?  @map("shop_location")
+  imageUrl     String?  @map("image_url")
+  linkUrl      String?  @map("link_url")
+  sortOrder    Int      @default(0) @map("sort_order")
+  isVisible    Boolean  @default(true) @map("is_visible")
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   curation Curation @relation(fields: [curationId], references: [id], onDelete: Cascade)
 

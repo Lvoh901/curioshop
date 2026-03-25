@@ -15,9 +15,12 @@ import {
 } from "react-icons/ri";
 import { IoLogOut } from "react-icons/io5";
 
+import Image from "next/image";
+
 type SidebarProps = {
   displayName: string;
   email: string;
+  image?: string | null;
 };
 
 const navItems = [
@@ -33,21 +36,32 @@ const navItems = [
 function SidebarContent({
   displayName,
   email,
+  image,
   initials,
   pathname,
   setIsOpen,
 }: {
   displayName: string;
   email: string;
+  image?: string | null;
   initials: string;
   pathname: string;
   setIsOpen: (open: boolean) => void;
 }) {
   return (
     <div className="h-full p-6 flex flex-col bg-stone-900 text-stone-100 overflow-y-auto">
-      <div className="flex flex-col gap-4 pb-3 border-b border-grey-600 border-dashed flex justify-center items-center text-center">
-        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-stone-700 to-stone-800 flex items-center justify-center font-bold text-xl shadow-inner shadow-white/5 border border-dashed">
-          {initials || <RiUser3Line />}
+      <div className="flex flex-col gap-4 pb-3 border-b border-grey-600 border-dashed items-center text-center">
+        <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-stone-700 to-stone-800 flex items-center justify-center font-bold text-xl shadow-inner shadow-white/5 border border-dashed overflow-hidden">
+          {image ? (
+            <Image
+              src={image}
+              alt={displayName}
+              fill
+              className="object-cover"
+            />
+          ) : (
+            initials || <RiUser3Line />
+          )}
         </div>
         <div className="min-w-0">
           <p className="font-bold text-sm truncate tracking-tight">{displayName}</p>
@@ -95,7 +109,7 @@ function SidebarContent({
   );
 }
 
-export default function AdminSidebar({ displayName, email }: SidebarProps) {
+export default function AdminSidebar({ displayName, email, image }: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -176,6 +190,7 @@ export default function AdminSidebar({ displayName, email }: SidebarProps) {
           <SidebarContent
             displayName={displayName}
             email={email}
+            image={image}
             initials={initials}
             pathname={pathname}
             setIsOpen={handleSetIsOpen}
@@ -205,6 +220,7 @@ export default function AdminSidebar({ displayName, email }: SidebarProps) {
                 <SidebarContent
                   displayName={displayName}
                   email={email}
+                  image={image}
                   initials={initials}
                   pathname={pathname}
                   setIsOpen={handleSetIsOpen}

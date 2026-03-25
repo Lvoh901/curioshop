@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { RiAddLine, RiCloseLine } from "react-icons/ri";
 import { UploadButton } from "@/lib/uploadthing";
+import Swal from "sweetalert2";
 
+// Utility to generate slugs
 function toSlug(value: string) {
   return value
     .toLowerCase()
@@ -14,8 +16,6 @@ function toSlug(value: string) {
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
 }
-
-import Swal from "sweetalert2";
 
 export default function CurationCreateForm() {
   const router = useRouter();
@@ -45,7 +45,6 @@ export default function CurationCreateForm() {
         setIsSaving(false);
         return;
       }
-
       const response = await fetch("/api/admin/curations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -58,7 +57,6 @@ export default function CurationCreateForm() {
           publishedAt,
         }),
       });
-
       const data = await response.json();
       if (!response.ok) {
         Swal.fire({
@@ -69,7 +67,6 @@ export default function CurationCreateForm() {
         });
         return;
       }
-
       Swal.fire({
         icon: "success",
         title: "Curation Created",
@@ -102,45 +99,63 @@ export default function CurationCreateForm() {
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
-        className="inline-flex items-center gap-2 rounded-lg bg-stone-900 px-4 py-2 text-sm font-semibold text-white hover:bg-stone-800 transition-colors"
+        className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors cursor-pointer shadow
+          ${open
+            ? "bg-red-600 hover:bg-red-700 text-white"
+            : "bg-white text-stone-900 border border-stone-200 hover:bg-stone-100"
+          }`}
+        style={{ boxShadow: open ? "0 2px 8px 0 #cbd5e1" : "0 2px 8px 0 #e5e7eb" }}
       >
-        {open ? <RiCloseLine className="text-lg" /> : <RiAddLine className="text-lg" />}
+        {open ? (
+          <RiCloseLine className="text-lg font-black transition-all duration-200" />
+        ) : (
+          <RiAddLine className="text-lg" />
+        )}
         {open ? "Close Form" : "Add New Curation"}
       </button>
 
       {open ? (
-        <form onSubmit={handleSubmit} className="mt-4 rounded-2xl border border-stone-200 bg-white p-5 space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <label className="text-sm text-stone-700">
-              Title
+        <form
+          onSubmit={handleSubmit}
+          className="mt-5 rounded-xl border border-stone-200 bg-stone-50 p-6 max-w-2xl shadow-lg mx-auto animate-fadein space-y-6"
+        >
+          <h2 className="text-xl font-serif font-bold text-stone-900 mb-4 border-b pb-2 border-stone-200 flex items-center gap-2">
+            <RiAddLine className="inline-block text-emerald-600" />
+            New Curation
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <label className="flex flex-col gap-1 mb-0">
+              <span className="uppercase font-semibold text-[13px] tracking-wide text-stone-700">Title <span className="text-rose-600">*</span></span>
               <input
                 required
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
-                className="mt-1 w-full rounded-lg border border-stone-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-stone-300"
+                className="w-full rounded-md border border-stone-400 px-3 py-2 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-200 bg-white text-stone-900 shadow-sm transition"
                 placeholder="Spring Collection"
+                autoFocus
               />
             </label>
 
-            <label className="text-sm text-stone-700">
-              Slug
+            <label className="flex flex-col gap-1 text-stone-800">
+              <span className="uppercase font-semibold text-[13px] tracking-wide">Slug</span>
               <input
                 value={slug}
                 onChange={(event) => setSlug(event.target.value)}
-                className="mt-1 w-full rounded-lg border border-stone-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-stone-300"
+                className="w-full rounded-md border border-stone-400 px-3 py-2 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-200 bg-white text-stone-900 shadow-sm transition"
                 placeholder="spring-collection"
               />
-              <span className="mt-1 block text-xs text-stone-500">Will save as: {effectiveSlug || "-"}</span>
+              <span className="mt-1 block text-xs text-stone-500 pt-0.5 pl-1">Will save as: <span className="font-mono text-stone-900">{effectiveSlug || "-"}</span></span>
             </label>
 
-            <label className="text-sm text-stone-700">
-              Status
+            <label className="flex flex-col gap-1 text-stone-800">
+              <span className="uppercase font-semibold text-[13px] tracking-wide">Status</span>
               <select
                 value={status}
                 onChange={(event) =>
                   setStatus(event.target.value as "draft" | "published" | "archived")
                 }
-                className="mt-1 w-full rounded-lg border border-stone-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-stone-300"
+                className="mt-0 w-full rounded-md border border-stone-400 px-3 py-2 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-200 bg-white text-stone-900 shadow-sm"
               >
                 <option value="draft">Draft</option>
                 <option value="published">Published</option>
@@ -148,20 +163,21 @@ export default function CurationCreateForm() {
               </select>
             </label>
 
-            <label className="text-sm text-stone-700">
-              Published At (optional)
+            <label className="flex flex-col gap-1 text-stone-800">
+              <span className="uppercase font-semibold text-[13px] tracking-wide">Published At</span>
               <input
                 type="datetime-local"
                 value={publishedAt}
                 onChange={(event) => setPublishedAt(event.target.value)}
-                className="mt-1 w-full rounded-lg border border-stone-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-stone-300"
+                className="mt-0 w-full rounded-md border border-stone-400 px-3 py-2 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-200 bg-white text-stone-900 shadow-sm"
               />
+              <span className="text-[11px] text-stone-500 pt-0.5 pl-1">Optional</span>
             </label>
           </div>
 
-          <div className="block">
-            <span className="text-sm text-stone-700">Cover Image</span>
-            <div className="mt-2 flex flex-col gap-3">
+          <div>
+            <span className="uppercase font-semibold text-[13px] tracking-wide text-stone-700">Cover Image <span className="text-rose-600">*</span></span>
+            <div className="mt-2 flex flex-col gap-4 items-start">
               <UploadButton
                 endpoint="curationImage"
                 onClientUploadComplete={(res) => {
@@ -180,49 +196,65 @@ export default function CurationCreateForm() {
                 }}
                 appearance={{
                   button:
-                    "ut-ready:bg-stone-900 ut-uploading:cursor-not-allowed rounded-lg bg-stone-900 px-4 py-2 text-sm font-semibold text-white hover:bg-stone-800",
+                    "ut-ready:bg-stone-900 ut-uploading:cursor-not-allowed rounded-lg bg-stone-900 px-4 py-2 text-sm font-semibold text-white hover:bg-stone-800 border-none shadow-sm",
                   container: "w-fit",
                 }}
               />
               {coverImageUrl ? (
-                <div className="rounded-lg border border-stone-200 p-2 w-fit">
+                <div className="flex flex-col items-center gap-2 rounded-lg border border-stone-200 p-2 bg-white shadow-sm">
                   <Image
                     src={coverImageUrl}
                     alt="Cover preview"
-                    width={96}
-                    height={96}
-                    className="h-24 w-24 object-cover rounded"
+                    width={72}
+                    height={72}
+                    className="h-28 w-28 object-cover rounded-t-md"
                   />
-                  <p className="mt-2 text-xs text-emerald-600">Image uploaded successfully.</p>
+                  <span className="text-xs text-emerald-700 font-medium">Uploaded Image</span>
                 </div>
               ) : (
-                <p className="text-xs text-stone-500">Upload one cover image (required).</p>
+                <p className="text-xs text-stone-500 mt-2">Upload one cover image to represent your curation.</p>
               )}
             </div>
           </div>
 
-          <label className="text-sm text-stone-700 block">
-            Description (optional)
+          <label className="flex flex-col gap-1 text-stone-800">
+            <span className="uppercase font-semibold text-[13px] tracking-wide">Description</span>
             <textarea
               value={description}
               onChange={(event) => setDescription(event.target.value)}
-              rows={4}
-              className="mt-1 w-full rounded-lg border border-stone-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-stone-300"
-              placeholder="Short note about this curation."
+              rows={3}
+              className="w-full rounded-md border border-stone-400 px-3 py-2 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-200 bg-white text-stone-900 shadow-sm resize-none"
+              placeholder="Short note about this curation (optional)"
             />
           </label>
-
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-2 mt-6">
+            <button
+              type="button"
+              disabled={isSaving}
+              onClick={() => setOpen(false)}
+              className="rounded-md border border-stone-400 px-4 py-2 text-sm font-semibold text-stone-900 bg-stone-100 hover:bg-stone-200 transition disabled:opacity-70"
+            >
+              Cancel
+            </button>
             <button
               type="submit"
               disabled={isSaving}
-              className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700 disabled:opacity-70"
+              className="rounded-md bg-emerald-600 px-5 py-2 text-sm font-semibold text-white hover:bg-emerald-700 focus:bg-emerald-700 transition disabled:opacity-60 shadow"
             >
-              {isSaving ? "Saving..." : "Save Curation"}
+              {isSaving ? "Adding..." : "Add Curation"}
             </button>
           </div>
         </form>
       ) : null}
+      <style jsx>{`
+        @keyframes fadein {
+          0%   { opacity: 0; transform: translateY(24px);}
+          100% { opacity: 1; transform: translateY(0);}
+        }
+        .animate-fadein {
+          animation: fadein 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+      `}</style>
     </div>
   );
 }

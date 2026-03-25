@@ -1485,6 +1485,7 @@ export namespace Prisma {
     id: string | null
     email: string | null
     name: string | null
+    image: string | null
     role: $Enums.UserRole | null
     passwordHash: string | null
     createdAt: Date | null
@@ -1495,6 +1496,7 @@ export namespace Prisma {
     id: string | null
     email: string | null
     name: string | null
+    image: string | null
     role: $Enums.UserRole | null
     passwordHash: string | null
     createdAt: Date | null
@@ -1505,6 +1507,7 @@ export namespace Prisma {
     id: number
     email: number
     name: number
+    image: number
     role: number
     passwordHash: number
     createdAt: number
@@ -1517,6 +1520,7 @@ export namespace Prisma {
     id?: true
     email?: true
     name?: true
+    image?: true
     role?: true
     passwordHash?: true
     createdAt?: true
@@ -1527,6 +1531,7 @@ export namespace Prisma {
     id?: true
     email?: true
     name?: true
+    image?: true
     role?: true
     passwordHash?: true
     createdAt?: true
@@ -1537,6 +1542,7 @@ export namespace Prisma {
     id?: true
     email?: true
     name?: true
+    image?: true
     role?: true
     passwordHash?: true
     createdAt?: true
@@ -1620,6 +1626,7 @@ export namespace Prisma {
     id: string
     email: string
     name: string
+    image: string | null
     role: $Enums.UserRole
     passwordHash: string | null
     createdAt: Date
@@ -1647,6 +1654,7 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
+    image?: boolean
     role?: boolean
     passwordHash?: boolean
     createdAt?: boolean
@@ -1660,6 +1668,7 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
+    image?: boolean
     role?: boolean
     passwordHash?: boolean
     createdAt?: boolean
@@ -1670,6 +1679,7 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
+    image?: boolean
     role?: boolean
     passwordHash?: boolean
     createdAt?: boolean
@@ -1680,13 +1690,14 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
+    image?: boolean
     role?: boolean
     passwordHash?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "role" | "passwordHash" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "image" | "role" | "passwordHash" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     createdCurations?: boolean | User$createdCurationsArgs<ExtArgs>
     assignedMessages?: boolean | User$assignedMessagesArgs<ExtArgs>
@@ -1705,6 +1716,7 @@ export namespace Prisma {
       id: string
       email: string
       name: string
+      image: string | null
       role: $Enums.UserRole
       passwordHash: string | null
       createdAt: Date
@@ -2137,6 +2149,7 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
+    readonly image: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
     readonly passwordHash: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
@@ -3789,10 +3802,12 @@ export namespace Prisma {
   }
 
   export type CurationItemAvgAggregateOutputType = {
+    price: number | null
     sortOrder: number | null
   }
 
   export type CurationItemSumAggregateOutputType = {
+    price: number | null
     sortOrder: number | null
   }
 
@@ -3800,7 +3815,10 @@ export namespace Prisma {
     id: string | null
     curationId: string | null
     title: string | null
-    content: string | null
+    description: string | null
+    price: number | null
+    category: string | null
+    shopLocation: string | null
     imageUrl: string | null
     linkUrl: string | null
     sortOrder: number | null
@@ -3813,7 +3831,10 @@ export namespace Prisma {
     id: string | null
     curationId: string | null
     title: string | null
-    content: string | null
+    description: string | null
+    price: number | null
+    category: string | null
+    shopLocation: string | null
     imageUrl: string | null
     linkUrl: string | null
     sortOrder: number | null
@@ -3826,7 +3847,10 @@ export namespace Prisma {
     id: number
     curationId: number
     title: number
-    content: number
+    description: number
+    price: number
+    category: number
+    shopLocation: number
     imageUrl: number
     linkUrl: number
     sortOrder: number
@@ -3838,10 +3862,12 @@ export namespace Prisma {
 
 
   export type CurationItemAvgAggregateInputType = {
+    price?: true
     sortOrder?: true
   }
 
   export type CurationItemSumAggregateInputType = {
+    price?: true
     sortOrder?: true
   }
 
@@ -3849,7 +3875,10 @@ export namespace Prisma {
     id?: true
     curationId?: true
     title?: true
-    content?: true
+    description?: true
+    price?: true
+    category?: true
+    shopLocation?: true
     imageUrl?: true
     linkUrl?: true
     sortOrder?: true
@@ -3862,7 +3891,10 @@ export namespace Prisma {
     id?: true
     curationId?: true
     title?: true
-    content?: true
+    description?: true
+    price?: true
+    category?: true
+    shopLocation?: true
     imageUrl?: true
     linkUrl?: true
     sortOrder?: true
@@ -3875,7 +3907,10 @@ export namespace Prisma {
     id?: true
     curationId?: true
     title?: true
-    content?: true
+    description?: true
+    price?: true
+    category?: true
+    shopLocation?: true
     imageUrl?: true
     linkUrl?: true
     sortOrder?: true
@@ -3975,7 +4010,10 @@ export namespace Prisma {
     id: string
     curationId: string
     title: string
-    content: string | null
+    description: string | null
+    price: number | null
+    category: string | null
+    shopLocation: string | null
     imageUrl: string | null
     linkUrl: string | null
     sortOrder: number
@@ -4007,7 +4045,10 @@ export namespace Prisma {
     id?: boolean
     curationId?: boolean
     title?: boolean
-    content?: boolean
+    description?: boolean
+    price?: boolean
+    category?: boolean
+    shopLocation?: boolean
     imageUrl?: boolean
     linkUrl?: boolean
     sortOrder?: boolean
@@ -4021,7 +4062,10 @@ export namespace Prisma {
     id?: boolean
     curationId?: boolean
     title?: boolean
-    content?: boolean
+    description?: boolean
+    price?: boolean
+    category?: boolean
+    shopLocation?: boolean
     imageUrl?: boolean
     linkUrl?: boolean
     sortOrder?: boolean
@@ -4035,7 +4079,10 @@ export namespace Prisma {
     id?: boolean
     curationId?: boolean
     title?: boolean
-    content?: boolean
+    description?: boolean
+    price?: boolean
+    category?: boolean
+    shopLocation?: boolean
     imageUrl?: boolean
     linkUrl?: boolean
     sortOrder?: boolean
@@ -4049,7 +4096,10 @@ export namespace Prisma {
     id?: boolean
     curationId?: boolean
     title?: boolean
-    content?: boolean
+    description?: boolean
+    price?: boolean
+    category?: boolean
+    shopLocation?: boolean
     imageUrl?: boolean
     linkUrl?: boolean
     sortOrder?: boolean
@@ -4058,7 +4108,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type CurationItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "curationId" | "title" | "content" | "imageUrl" | "linkUrl" | "sortOrder" | "isVisible" | "createdAt" | "updatedAt", ExtArgs["result"]["curationItem"]>
+  export type CurationItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "curationId" | "title" | "description" | "price" | "category" | "shopLocation" | "imageUrl" | "linkUrl" | "sortOrder" | "isVisible" | "createdAt" | "updatedAt", ExtArgs["result"]["curationItem"]>
   export type CurationItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     curation?: boolean | CurationDefaultArgs<ExtArgs>
   }
@@ -4078,7 +4128,10 @@ export namespace Prisma {
       id: string
       curationId: string
       title: string
-      content: string | null
+      description: string | null
+      price: number | null
+      category: string | null
+      shopLocation: string | null
       imageUrl: string | null
       linkUrl: string | null
       sortOrder: number
@@ -4512,7 +4565,10 @@ export namespace Prisma {
     readonly id: FieldRef<"CurationItem", 'String'>
     readonly curationId: FieldRef<"CurationItem", 'String'>
     readonly title: FieldRef<"CurationItem", 'String'>
-    readonly content: FieldRef<"CurationItem", 'String'>
+    readonly description: FieldRef<"CurationItem", 'String'>
+    readonly price: FieldRef<"CurationItem", 'Float'>
+    readonly category: FieldRef<"CurationItem", 'String'>
+    readonly shopLocation: FieldRef<"CurationItem", 'String'>
     readonly imageUrl: FieldRef<"CurationItem", 'String'>
     readonly linkUrl: FieldRef<"CurationItem", 'String'>
     readonly sortOrder: FieldRef<"CurationItem", 'Int'>
@@ -8203,6 +8259,7 @@ export namespace Prisma {
     id: 'id',
     email: 'email',
     name: 'name',
+    image: 'image',
     role: 'role',
     passwordHash: 'passwordHash',
     createdAt: 'createdAt',
@@ -8232,7 +8289,10 @@ export namespace Prisma {
     id: 'id',
     curationId: 'curationId',
     title: 'title',
-    content: 'content',
+    description: 'description',
+    price: 'price',
+    category: 'category',
+    shopLocation: 'shopLocation',
     imageUrl: 'imageUrl',
     linkUrl: 'linkUrl',
     sortOrder: 'sortOrder',
@@ -8366,6 +8426,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -8398,20 +8472,6 @@ export namespace Prisma {
    */
   export type ListEnumMessageStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MessageStatus[]'>
     
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
   /**
    * Deep Input Types
    */
@@ -8424,6 +8484,7 @@ export namespace Prisma {
     id?: UuidFilter<"User"> | string
     email?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
+    image?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     passwordHash?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -8436,6 +8497,7 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    image?: SortOrderInput | SortOrder
     role?: SortOrder
     passwordHash?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -8451,6 +8513,7 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
+    image?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     passwordHash?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -8463,6 +8526,7 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    image?: SortOrderInput | SortOrder
     role?: SortOrder
     passwordHash?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -8479,6 +8543,7 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     name?: StringWithAggregatesFilter<"User"> | string
+    image?: StringNullableWithAggregatesFilter<"User"> | string | null
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
     passwordHash?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -8578,7 +8643,10 @@ export namespace Prisma {
     id?: UuidFilter<"CurationItem"> | string
     curationId?: UuidFilter<"CurationItem"> | string
     title?: StringFilter<"CurationItem"> | string
-    content?: StringNullableFilter<"CurationItem"> | string | null
+    description?: StringNullableFilter<"CurationItem"> | string | null
+    price?: FloatNullableFilter<"CurationItem"> | number | null
+    category?: StringNullableFilter<"CurationItem"> | string | null
+    shopLocation?: StringNullableFilter<"CurationItem"> | string | null
     imageUrl?: StringNullableFilter<"CurationItem"> | string | null
     linkUrl?: StringNullableFilter<"CurationItem"> | string | null
     sortOrder?: IntFilter<"CurationItem"> | number
@@ -8592,7 +8660,10 @@ export namespace Prisma {
     id?: SortOrder
     curationId?: SortOrder
     title?: SortOrder
-    content?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    price?: SortOrderInput | SortOrder
+    category?: SortOrderInput | SortOrder
+    shopLocation?: SortOrderInput | SortOrder
     imageUrl?: SortOrderInput | SortOrder
     linkUrl?: SortOrderInput | SortOrder
     sortOrder?: SortOrder
@@ -8609,7 +8680,10 @@ export namespace Prisma {
     NOT?: CurationItemWhereInput | CurationItemWhereInput[]
     curationId?: UuidFilter<"CurationItem"> | string
     title?: StringFilter<"CurationItem"> | string
-    content?: StringNullableFilter<"CurationItem"> | string | null
+    description?: StringNullableFilter<"CurationItem"> | string | null
+    price?: FloatNullableFilter<"CurationItem"> | number | null
+    category?: StringNullableFilter<"CurationItem"> | string | null
+    shopLocation?: StringNullableFilter<"CurationItem"> | string | null
     imageUrl?: StringNullableFilter<"CurationItem"> | string | null
     linkUrl?: StringNullableFilter<"CurationItem"> | string | null
     sortOrder?: IntFilter<"CurationItem"> | number
@@ -8623,7 +8697,10 @@ export namespace Prisma {
     id?: SortOrder
     curationId?: SortOrder
     title?: SortOrder
-    content?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    price?: SortOrderInput | SortOrder
+    category?: SortOrderInput | SortOrder
+    shopLocation?: SortOrderInput | SortOrder
     imageUrl?: SortOrderInput | SortOrder
     linkUrl?: SortOrderInput | SortOrder
     sortOrder?: SortOrder
@@ -8644,7 +8721,10 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"CurationItem"> | string
     curationId?: UuidWithAggregatesFilter<"CurationItem"> | string
     title?: StringWithAggregatesFilter<"CurationItem"> | string
-    content?: StringNullableWithAggregatesFilter<"CurationItem"> | string | null
+    description?: StringNullableWithAggregatesFilter<"CurationItem"> | string | null
+    price?: FloatNullableWithAggregatesFilter<"CurationItem"> | number | null
+    category?: StringNullableWithAggregatesFilter<"CurationItem"> | string | null
+    shopLocation?: StringNullableWithAggregatesFilter<"CurationItem"> | string | null
     imageUrl?: StringNullableWithAggregatesFilter<"CurationItem"> | string | null
     linkUrl?: StringNullableWithAggregatesFilter<"CurationItem"> | string | null
     sortOrder?: IntWithAggregatesFilter<"CurationItem"> | number
@@ -8841,6 +8921,7 @@ export namespace Prisma {
     id?: string
     email: string
     name: string
+    image?: string | null
     role?: $Enums.UserRole
     passwordHash?: string | null
     createdAt?: Date | string
@@ -8853,6 +8934,7 @@ export namespace Prisma {
     id?: string
     email: string
     name: string
+    image?: string | null
     role?: $Enums.UserRole
     passwordHash?: string | null
     createdAt?: Date | string
@@ -8865,6 +8947,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8877,6 +8960,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8889,6 +8973,7 @@ export namespace Prisma {
     id?: string
     email: string
     name: string
+    image?: string | null
     role?: $Enums.UserRole
     passwordHash?: string | null
     createdAt?: Date | string
@@ -8899,6 +8984,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8909,6 +8995,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9016,7 +9103,10 @@ export namespace Prisma {
   export type CurationItemCreateInput = {
     id?: string
     title: string
-    content?: string | null
+    description?: string | null
+    price?: number | null
+    category?: string | null
+    shopLocation?: string | null
     imageUrl?: string | null
     linkUrl?: string | null
     sortOrder?: number
@@ -9030,7 +9120,10 @@ export namespace Prisma {
     id?: string
     curationId: string
     title: string
-    content?: string | null
+    description?: string | null
+    price?: number | null
+    category?: string | null
+    shopLocation?: string | null
     imageUrl?: string | null
     linkUrl?: string | null
     sortOrder?: number
@@ -9042,7 +9135,10 @@ export namespace Prisma {
   export type CurationItemUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    shopLocation?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sortOrder?: IntFieldUpdateOperationsInput | number
@@ -9056,7 +9152,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     curationId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    shopLocation?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sortOrder?: IntFieldUpdateOperationsInput | number
@@ -9069,7 +9168,10 @@ export namespace Prisma {
     id?: string
     curationId: string
     title: string
-    content?: string | null
+    description?: string | null
+    price?: number | null
+    category?: string | null
+    shopLocation?: string | null
     imageUrl?: string | null
     linkUrl?: string | null
     sortOrder?: number
@@ -9081,7 +9183,10 @@ export namespace Prisma {
   export type CurationItemUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    shopLocation?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sortOrder?: IntFieldUpdateOperationsInput | number
@@ -9094,7 +9199,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     curationId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    shopLocation?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sortOrder?: IntFieldUpdateOperationsInput | number
@@ -9320,13 +9428,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type EnumUserRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
-  }
-
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -9340,6 +9441,13 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type EnumUserRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -9382,6 +9490,7 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    image?: SortOrder
     role?: SortOrder
     passwordHash?: SortOrder
     createdAt?: SortOrder
@@ -9392,6 +9501,7 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    image?: SortOrder
     role?: SortOrder
     passwordHash?: SortOrder
     createdAt?: SortOrder
@@ -9402,6 +9512,7 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    image?: SortOrder
     role?: SortOrder
     passwordHash?: SortOrder
     createdAt?: SortOrder
@@ -9441,16 +9552,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type EnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumUserRoleFilter<$PrismaModel>
-    _max?: NestedEnumUserRoleFilter<$PrismaModel>
-  }
-
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -9467,6 +9568,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type EnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserRoleFilter<$PrismaModel>
+    _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -9589,6 +9700,17 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9614,7 +9736,10 @@ export namespace Prisma {
     id?: SortOrder
     curationId?: SortOrder
     title?: SortOrder
-    content?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
+    category?: SortOrder
+    shopLocation?: SortOrder
     imageUrl?: SortOrder
     linkUrl?: SortOrder
     sortOrder?: SortOrder
@@ -9624,6 +9749,7 @@ export namespace Prisma {
   }
 
   export type CurationItemAvgOrderByAggregateInput = {
+    price?: SortOrder
     sortOrder?: SortOrder
   }
 
@@ -9631,7 +9757,10 @@ export namespace Prisma {
     id?: SortOrder
     curationId?: SortOrder
     title?: SortOrder
-    content?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
+    category?: SortOrder
+    shopLocation?: SortOrder
     imageUrl?: SortOrder
     linkUrl?: SortOrder
     sortOrder?: SortOrder
@@ -9644,7 +9773,10 @@ export namespace Prisma {
     id?: SortOrder
     curationId?: SortOrder
     title?: SortOrder
-    content?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
+    category?: SortOrder
+    shopLocation?: SortOrder
     imageUrl?: SortOrder
     linkUrl?: SortOrder
     sortOrder?: SortOrder
@@ -9654,7 +9786,24 @@ export namespace Prisma {
   }
 
   export type CurationItemSumOrderByAggregateInput = {
+    price?: SortOrder
     sortOrder?: SortOrder
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -9853,12 +10002,12 @@ export namespace Prisma {
     set?: string
   }
 
-  export type EnumUserRoleFieldUpdateOperationsInput = {
-    set?: $Enums.UserRole
-  }
-
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type EnumUserRoleFieldUpdateOperationsInput = {
+    set?: $Enums.UserRole
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -10033,6 +10182,14 @@ export namespace Prisma {
     connect?: CurationWhereUniqueInput
   }
 
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -10168,13 +10325,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedEnumUserRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
-  }
-
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -10187,6 +10337,13 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedEnumUserRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -10242,16 +10399,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedEnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumUserRoleFilter<$PrismaModel>
-    _max?: NestedEnumUserRoleFilter<$PrismaModel>
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -10278,6 +10425,16 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserRoleFilter<$PrismaModel>
+    _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -10336,9 +10493,36 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -10558,6 +10742,7 @@ export namespace Prisma {
     id?: string
     email: string
     name: string
+    image?: string | null
     role?: $Enums.UserRole
     passwordHash?: string | null
     createdAt?: Date | string
@@ -10569,6 +10754,7 @@ export namespace Prisma {
     id?: string
     email: string
     name: string
+    image?: string | null
     role?: $Enums.UserRole
     passwordHash?: string | null
     createdAt?: Date | string
@@ -10584,7 +10770,10 @@ export namespace Prisma {
   export type CurationItemCreateWithoutCurationInput = {
     id?: string
     title: string
-    content?: string | null
+    description?: string | null
+    price?: number | null
+    category?: string | null
+    shopLocation?: string | null
     imageUrl?: string | null
     linkUrl?: string | null
     sortOrder?: number
@@ -10596,7 +10785,10 @@ export namespace Prisma {
   export type CurationItemUncheckedCreateWithoutCurationInput = {
     id?: string
     title: string
-    content?: string | null
+    description?: string | null
+    price?: number | null
+    category?: string | null
+    shopLocation?: string | null
     imageUrl?: string | null
     linkUrl?: string | null
     sortOrder?: number
@@ -10650,6 +10842,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10661,6 +10854,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10691,7 +10885,10 @@ export namespace Prisma {
     id?: UuidFilter<"CurationItem"> | string
     curationId?: UuidFilter<"CurationItem"> | string
     title?: StringFilter<"CurationItem"> | string
-    content?: StringNullableFilter<"CurationItem"> | string | null
+    description?: StringNullableFilter<"CurationItem"> | string | null
+    price?: FloatNullableFilter<"CurationItem"> | number | null
+    category?: StringNullableFilter<"CurationItem"> | string | null
+    shopLocation?: StringNullableFilter<"CurationItem"> | string | null
     imageUrl?: StringNullableFilter<"CurationItem"> | string | null
     linkUrl?: StringNullableFilter<"CurationItem"> | string | null
     sortOrder?: IntFilter<"CurationItem"> | number
@@ -10801,6 +10998,7 @@ export namespace Prisma {
     id?: string
     email: string
     name: string
+    image?: string | null
     role?: $Enums.UserRole
     passwordHash?: string | null
     createdAt?: Date | string
@@ -10812,6 +11010,7 @@ export namespace Prisma {
     id?: string
     email: string
     name: string
+    image?: string | null
     role?: $Enums.UserRole
     passwordHash?: string | null
     createdAt?: Date | string
@@ -10839,6 +11038,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10850,6 +11050,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11116,7 +11317,10 @@ export namespace Prisma {
   export type CurationItemCreateManyCurationInput = {
     id?: string
     title: string
-    content?: string | null
+    description?: string | null
+    price?: number | null
+    category?: string | null
+    shopLocation?: string | null
     imageUrl?: string | null
     linkUrl?: string | null
     sortOrder?: number
@@ -11133,7 +11337,10 @@ export namespace Prisma {
   export type CurationItemUpdateWithoutCurationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    shopLocation?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sortOrder?: IntFieldUpdateOperationsInput | number
@@ -11145,7 +11352,10 @@ export namespace Prisma {
   export type CurationItemUncheckedUpdateWithoutCurationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    shopLocation?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sortOrder?: IntFieldUpdateOperationsInput | number
@@ -11157,7 +11367,10 @@ export namespace Prisma {
   export type CurationItemUncheckedUpdateManyWithoutCurationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    shopLocation?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sortOrder?: IntFieldUpdateOperationsInput | number
