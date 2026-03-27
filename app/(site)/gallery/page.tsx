@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { prisma } from '@/lib/prisma';
 
-import { Prisma } from '@prisma/client';
+import { Prisma } from '@/generated/prisma';
 
 export default async function GalleryPage({
   searchParams,

@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { getAdminSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/generated/prisma";
 
 export async function updateProfileImage(imageUrl: string) {
   const session = await getAdminSession();
