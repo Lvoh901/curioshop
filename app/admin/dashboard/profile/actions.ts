@@ -3,6 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { getAdminSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import bcrypt from "bcryptjs";
+import { Prisma } from "@prisma/client";
 
 export async function updateProfileImage(imageUrl: string) {
   const session = await getAdminSession();
@@ -40,15 +42,13 @@ export async function updateProfile(data: { name: string; email: string }) {
 
     revalidatePath("/admin/dashboard/profile");
     return { success: true, user: updatedUser };
-  } catch (error: any) {
-    if (error.code === "P2002") {
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
       return { success: false, error: "Email already in use." };
     }
     return { success: false, error: "Failed to update profile." };
   }
 }
-
-import bcrypt from "bcryptjs";
 
 export async function createUser(data: { name: string; email: string; role: "admin" | "editor" | "viewer"; password?: string }) {
   const session = await getAdminSession();
@@ -67,8 +67,8 @@ export async function createUser(data: { name: string; email: string; role: "adm
 
     revalidatePath("/admin/dashboard/profile");
     return { success: true, user };
-  } catch (error: any) {
-    if (error.code === "P2002") return { success: false, error: "Email already in use." };
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") return { success: false, error: "Email already in use." };
     return { success: false, error: "Failed to create user." };
   }
 }
@@ -89,8 +89,8 @@ export async function updateUser(id: string, data: { name: string; email: string
 
     revalidatePath("/admin/dashboard/profile");
     return { success: true, user };
-  } catch (error: any) {
-    if (error.code === "P2002") return { success: false, error: "Email already in use." };
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") return { success: false, error: "Email already in use." };
     return { success: false, error: "Failed to update user." };
   }
 }
@@ -104,7 +104,7 @@ export async function deleteUser(id: string) {
     await prisma.user.delete({ where: { id } });
     revalidatePath("/admin/dashboard/profile");
     return { success: true };
-  } catch (error) {
+  } catch {
     return { success: false, error: "Failed to delete user." };
   }
 }

@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { redirect, notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { RiArrowLeftLine, RiPencilLine } from "react-icons/ri";
+import { RiArrowLeftLine } from "react-icons/ri";
 import { CurationItemForm } from "./CurationItemForm";
 import { DeleteItemButton } from "./DeleteItemButton";
 

@@ -137,12 +137,12 @@ export default function AdminSidebar({ displayName, email, image }: SidebarProps
   // Only auto-close sidebar on mobile when route changes
   useEffect(() => {
     // Only close if not on large screen
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsOpen((prev) => {
       // don't cause extra render if already false
       if (prev === false) return prev;
       return false;
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   // Check if we're on a large screen using JavaScript

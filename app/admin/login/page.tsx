@@ -4,11 +4,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { RiLockPasswordLine, RiUserLine, RiArrowRightLine, RiHome9Line } from 'react-icons/ri';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import Swal from 'sweetalert2';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 export default function AdminLoginPage() {
   const router = useRouter();

@@ -15,8 +15,8 @@ export default function SessionTimeout() {
       // Call the logout API
       await fetch("/api/admin/logout", { method: "POST" });
       
-      // Redirect to login page
-      router.push("/admin/login");
+      // Redirect to home page
+      router.push("/");
       router.refresh();
     } catch (error) {
       console.error("Auto logout failed:", error);

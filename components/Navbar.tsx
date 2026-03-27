@@ -9,10 +9,18 @@ import { RiMenuLine, RiCloseLine } from 'react-icons/ri';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsMounted(true);
+
     const checkScreenSize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024);
+      const isLarge = window.innerWidth >= 768;
+      setIsLargeScreen(isLarge);
+      if (isLarge) {
+        setIsOpen(false);
+      }
     };
 
     checkScreenSize();
@@ -21,19 +29,14 @@ const Navbar = () => {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  // Close mobile menu when screen size changes to large
-  useEffect(() => {
-    if (isLargeScreen) {
-      setIsOpen(false);
-    }
-  }, [isLargeScreen]);
-
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Contact', href: '/contact' },
     { name: 'Admin', href: '/admin/login' },
   ];
+
+  if (!isMounted) return null;
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-white shadow-sm border-b border-stone-200">
@@ -43,11 +46,11 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center group">
               <Image
-                width={40}
-                height={40}
+                width={56}
+                height={56}
                 src="/jakem_logo.png"
                 alt="Navbar Logo"
-                className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 object-contain transition-transform group-hover:scale-110"
+                className="h-12 w-12 sm:h-16 sm:w-16 object-contain transition-transform group-hover:scale-110"
                 priority
               />
               <span className="ml-2 text-stone-900 font-bold text-xs sm:text-sm tracking-tight hidden xs:block">
@@ -56,15 +59,15 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Desktop Navigation - only visible on large screens */}
+          {/* Desktop Navigation */}
           {isLargeScreen && (
             <div className="flex items-center">
-              <div className="ml-8 flex items-center space-x-1 lg:space-x-4">
+              <div className="ml-4 md:ml-8 flex items-center space-x-1 md:space-x-4">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="relative px-3 py-2 text-stone-700 hover:text-amber-600 text-xs lg:text-sm font-bold transition-all uppercase tracking-wider group"
+                    className="relative px-3 py-2 text-stone-700 hover:text-amber-600 text-[10px] md:text-xs lg:text-sm font-bold transition-all uppercase tracking-wider group"
                   >
                     {link.name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all group-hover:w-full" />
@@ -74,11 +77,11 @@ const Navbar = () => {
             </div>
           )}
 
-          {/* Mobile Menu Button - only visible on small screens */}
+          {/* Mobile Menu Button */}
           {!isLargeScreen && (
             <div className="flex items-center">
               <button
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => setIsOpen((prev) => !prev)}
                 className="p-2 rounded-lg text-stone-600 hover:bg-stone-100 transition-colors focus:outline-none"
                 aria-label="Toggle menu"
               >
@@ -93,7 +96,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation Dropdown - only visible on small screens */}
+      {/* Mobile Navigation Dropdown */}
       {!isLargeScreen && (
         <AnimatePresence>
           {isOpen && (

@@ -39,10 +39,11 @@ export function DeleteCurationButton({ id, title }: { id: string; title: string 
           confirmButtonColor: "#1c1917",
         });
         router.refresh();
-      } catch (error: any) {
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Failed to delete curation.";
         Swal.fire({
           title: "Error!",
-          text: error.message || "Failed to delete curation.",
+          text: errorMessage,
           icon: "error",
           confirmButtonColor: "#1c1917",
         });

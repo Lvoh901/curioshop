@@ -1,29 +1,56 @@
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { prisma } from '@/lib/prisma';
 
-export default async function GalleryPage() {
+import { Prisma } from '@prisma/client';
+
+export default async function GalleryPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ curationId?: string }>;
+}) {
+  const { curationId } = await searchParams;
+
+  const where: Prisma.CurationItemWhereInput = {
+    isVisible: true,
+    curation: {
+      status: 'published'
+    }
+  };
+
+  if (curationId) {
+    where.curationId = curationId;
+  }
+
   const items = await prisma.curationItem.findMany({
-    where: {
-      isVisible: true,
-      curation: {
-        status: 'published'
-      }
-    },
+    where,
     orderBy: { createdAt: 'desc' },
   });
+
+  const curation = curationId ? await prisma.curation.findUnique({
+    where: { id: curationId },
+    select: { title: true }
+  }) : null;
 
   return (
     <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center mt-8 mb-16">
         <h2 className="text-4xl sm:text-5xl font-serif font-bold text-stone-900 mb-4">
-          The Gallery
+          {curation ? curation.title : 'The Gallery'}
         </h2>
         <p className="text-lg text-stone-600 max-w-2xl mx-auto font-medium">
-          Browse our curated selection of rare artifacts and unique curiosities.
-          Each piece tells a story of its own.
+          {curation 
+            ? `Explore our handpicked selection of items from the ${curation.title} collection.`
+            : 'Browse our curated selection of rare artifacts and unique curiosities. Each piece tells a story of its own.'
+          }
         </p>
+        {curationId && (
+          <div className="mt-4">
+            <Link href="/gallery" className="text-amber-600 hover:text-amber-700 font-bold uppercase tracking-widest text-xs">
+              &larr; View All Collections
+            </Link>
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">

@@ -78,7 +78,7 @@ export default function ContactPage() {
       } else {
         setSubmitError(result.error || 'Failed to send message. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setSubmitError('An unexpected error occurred. Please try again later.');
     } finally {
       setSubmitting(false);
