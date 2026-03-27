@@ -2,6 +2,8 @@ import CurationsList from "./_components/CurationsList";
 import StatsCards from "./_components/StatsCards";
 import { getDashboardStats, getLatestCurations } from "./_lib/data";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboardPage() {
   const [stats, latestCurations] = await Promise.all([
     getDashboardStats(),

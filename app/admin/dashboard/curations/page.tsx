@@ -6,6 +6,8 @@ import { DeleteCurationButton } from "./DeleteCurationButton";
 import { RiEditLine } from "react-icons/ri";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminCurationsPage() {
   const curations = await getCurationsForTable(50);
 

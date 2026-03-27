@@ -5,6 +5,8 @@ import { ProfilePhotoUploader } from "./ProfilePhotoUploader";
 import { ProfileDataForm } from "./ProfileDataForm";
 import { UserManagement } from "./UserManagement";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminProfilePage() {
   const session = await getAdminSession();
   if (!session) return null;

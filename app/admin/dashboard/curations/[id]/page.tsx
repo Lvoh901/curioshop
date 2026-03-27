@@ -7,6 +7,8 @@ import { RiArrowLeftLine } from "react-icons/ri";
 import { CurationItemForm } from "./CurationItemForm";
 import { DeleteItemButton } from "./DeleteItemButton";
 
+export const dynamic = "force-dynamic";
+
 export default async function CurationEditPage({ params }: { params: { id: string } }) {
   const session = await getAdminSession();
   if (!session || session.role !== "admin") {

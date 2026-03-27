@@ -1,6 +1,8 @@
 import MessagesList from "../_components/MessagesList";
 import { getLatestMessages } from "../_lib/data";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminMessagesPage() {
   const messages = await getLatestMessages(20);
 
