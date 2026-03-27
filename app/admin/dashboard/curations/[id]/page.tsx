@@ -9,7 +9,11 @@ import { DeleteItemButton } from "./DeleteItemButton";
 
 export const dynamic = "force-dynamic";
 
-export default async function CurationEditPage({ params }: { params: { id: string } }) {
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function CurationEditPage({ params }: Props) {
   const session = await getAdminSession();
   if (!session || session.role !== "admin") {
     redirect("/admin/login");
